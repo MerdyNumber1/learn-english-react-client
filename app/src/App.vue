@@ -1,29 +1,16 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-    123
+    <b-container class="mt-3">
+      <b-nav pills>
+        <b-nav-item active>Главная</b-nav-item>
+        <b-nav-item>Теория</b-nav-item>
+        <b-nav-item>Практика</b-nav-item>
+        <b-nav-item class="ml-auto">Вход</b-nav-item>
+      </b-nav>
+    </b-container>
+    <router-view class="mt-5"/>
   </div>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="scss">
 </style>
