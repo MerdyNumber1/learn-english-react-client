@@ -4,10 +4,11 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import BootstrapVue from 'bootstrap-vue'
-import '@/assets/main.scss'
+import VueMeta from 'vue-meta' 
 
 Vue.config.productionTip = false
 
+Vue.use(VueMeta)
 Vue.use(BootstrapVue)
 
 new Vue({
