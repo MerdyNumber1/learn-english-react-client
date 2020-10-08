@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Nav from '@/components/nav/Nav.vue'
+import {Nav} from '@/components'
 
 export default {
   components: {

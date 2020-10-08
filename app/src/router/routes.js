@@ -1,4 +1,4 @@
-import {Home, Theory, Practice, Login} from '@/views'
+import {Home, Theory, Practice, Login, SignUp} from '@/views'
 
 export default [
     {
@@ -20,5 +20,10 @@ export default [
         path: '/login',
         name: 'Login',
         component: Login
+    },
+    {
+      path: '/signup',
+      name: 'SignUp',
+      component: SignUp
     }
 ]

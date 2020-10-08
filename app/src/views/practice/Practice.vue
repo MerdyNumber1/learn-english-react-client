@@ -1,7 +1,7 @@
 <template>
-    <div>
-        Practice
-    </div>
+    <b-container>
+      <h1>Практика</h1>
+    </b-container>
 </template>
 
 <script>
@@ -14,5 +14,5 @@ export default {
 </script>
 
 <style lang="">
-    
+
 </style>
