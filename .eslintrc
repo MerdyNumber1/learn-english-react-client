@@ -25,6 +25,7 @@
     }
   },
   "rules": {
+    "no-param-reassign": [2, { "props": false }],
     "object-curly-newline": "off",
     "linebreak-style": 0,
     "no-undef": "off",

@@ -1,10 +1,13 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import Routes from './routes';
+import 'antd/dist/antd.css';
+import store from './store';
 
 const App = () => (
-  <div>
+  <Provider store={store}>
     <Routes />
-  </div>
+  </Provider>
 );
 
 export default App;

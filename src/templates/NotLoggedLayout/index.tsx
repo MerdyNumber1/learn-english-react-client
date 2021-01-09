@@ -1,7 +1,9 @@
 import React from 'react';
 import { Layout } from 'antd';
+import Nav from 'components/common/Nav';
+import styles from './NotLoggedLayout.module.sass';
 
-const { Header, Sider, Content, Footer } = Layout;
+const { Header, Content } = Layout;
 
 interface INotLoggedLayout {
   children?: any;
@@ -9,13 +11,12 @@ interface INotLoggedLayout {
 
 const NotLoggedLayout: React.FC = ({ children }: INotLoggedLayout): React.ReactElement => (
   <Layout>
-    <Header>header</Header>
-    <Layout>
-      <Sider>left sidebar</Sider>
-      <Content>{children}</Content>
-      <Sider>right sidebar</Sider>
+    <Header>
+      <Nav />
+    </Header>
+    <Layout className={styles.layout}>
+      <Content className={styles.content}>{children}</Content>
     </Layout>
-    <Footer>footer</Footer>
   </Layout>
 );
 
