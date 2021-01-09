@@ -8,7 +8,7 @@ const MainPage = React.lazy(() => import('pages/MainPage'));
 const LoginPage = React.lazy(() => import('pages/LoginPage'));
 const SignupPage = React.lazy(() => import('pages/SignupPage'));
 
-const Routes: React.FC = (): React.ReactElement => (
+const Routes: React.FC = () => (
   <SuspenseFallback>
     <Router>
       <NotLoggedLayout path="/">

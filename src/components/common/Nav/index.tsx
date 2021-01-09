@@ -2,7 +2,7 @@ import React from 'react';
 import { Menu } from 'antd';
 import { Link } from '@reach/router';
 
-const Nav: React.FC = (): React.ReactElement => (
+const Nav: React.FC = () => (
   <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
     <Menu.Item key="1">
       <Link to="/">Главная</Link>

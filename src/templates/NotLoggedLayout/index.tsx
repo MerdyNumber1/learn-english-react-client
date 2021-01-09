@@ -5,11 +5,11 @@ import styles from './NotLoggedLayout.module.sass';
 
 const { Header, Content } = Layout;
 
-interface INotLoggedLayout {
-  children?: any;
+interface INotLoggedLayoutProps {
+  children: React.ReactNode;
 }
 
-const NotLoggedLayout: React.FC = ({ children }: INotLoggedLayout): React.ReactElement => (
+const NotLoggedLayout: React.FC<INotLoggedLayoutProps> = ({ children }) => (
   <Layout>
     <Header>
       <Nav />
@@ -19,9 +19,5 @@ const NotLoggedLayout: React.FC = ({ children }: INotLoggedLayout): React.ReactE
     </Layout>
   </Layout>
 );
-
-NotLoggedLayout.defaultProps = {
-  children: 'main',
-};
 
 export default NotLoggedLayout;

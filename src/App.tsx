@@ -4,7 +4,7 @@ import Routes from './routes';
 import 'antd/dist/antd.css';
 import store from './store';
 
-const App = () => (
+const App: React.FC = () => (
   <Provider store={store}>
     <Routes />
   </Provider>
