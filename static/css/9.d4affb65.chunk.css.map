@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/templates/NotLoggedLayout/NotLoggedLayout.module.sass"],"names":[],"mappings":"AAAA,+BACE,YAAa,CACb,6BAA8B,CAAG,gCAGjC,eAAiB,CACjB,YAAa","file":"9.d4affb65.chunk.css","sourcesContent":[".layout {\n  padding: 50px;\n  min-height: calc(100vh - 65px); }\n\n.content {\n  background: white;\n  padding: 24px; }\n"]}
