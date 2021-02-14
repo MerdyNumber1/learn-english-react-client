@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import user from './user';
+import userSlice from './user';
 
 const reducers = combineReducers({
-  user: user.reducer,
+  user: userSlice.reducer,
 });
 
 export default reducers;

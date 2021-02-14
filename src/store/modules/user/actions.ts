@@ -1,9 +1,12 @@
-import { createUser } from 'services/api';
+import { createUser, getTokens } from 'services/api';
 import { AppDispatch } from 'store';
-import user from './index';
+import { TokensDTO, User, UserDTO } from 'services/models';
+import userSlice from './index';
 
-const { loginUser } = user.actions;
+const { setAuthData, setUserData } = userSlice.actions;
 
-export const signup = (username: string, email: string, password: string) => (
-  dispatch: AppDispatch,
-) => createUser(username, email, password).then((res) => dispatch(loginUser(res)));
+export const signup = (user: User) => (dispatch: AppDispatch) =>
+  createUser(user).then((data: User) => dispatch(setUserData(data)));
+
+export const login = (authData: UserDTO) => (dispatch: AppDispatch) =>
+  getTokens(authData).then((data: TokensDTO) => dispatch(setAuthData(data)));
