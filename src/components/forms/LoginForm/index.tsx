@@ -7,13 +7,13 @@ import styles from './LoginForm.module.sass';
 
 const { Text } = Typography;
 
-interface ILoginFormValues {
+interface LoginFormValues {
   email: string;
   password: string;
 }
 
 const LoginForm: React.FC = () => {
-  const { getFieldProps, handleSubmit, errors, touched } = useFormik<ILoginFormValues>({
+  const { getFieldProps, handleSubmit, errors, touched } = useFormik<LoginFormValues>({
     initialValues: {
       email: '',
       password: '',

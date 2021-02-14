@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import { Spin } from 'antd';
 import styles from './SuspenseFallback.module.sass';
 
-interface ISuspenseFallbackProps {
+interface SuspenseFallbackProps {
   children: React.ReactNode;
 }
 
@@ -12,7 +12,7 @@ const Fallback: React.FC = () => (
   </div>
 );
 
-const SuspenseFallback: React.FC<ISuspenseFallbackProps> = ({ children }) => (
+const SuspenseFallback: React.FC<SuspenseFallbackProps> = ({ children }) => (
   <Suspense fallback={<Fallback />}>{children}</Suspense>
 );
 

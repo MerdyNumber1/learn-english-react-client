@@ -7,14 +7,14 @@ import styles from './SignupForm.module.sass';
 
 const { Text } = Typography;
 
-interface ISignupFormValues {
+interface SignupFormValues {
   email: string;
   name: string;
   password: string;
 }
 
 const SignupForm: React.FC = () => {
-  const { getFieldProps, handleSubmit, errors, touched } = useFormik<ISignupFormValues>({
+  const { getFieldProps, handleSubmit, errors, touched } = useFormik<SignupFormValues>({
     initialValues: {
       email: '',
       name: '',

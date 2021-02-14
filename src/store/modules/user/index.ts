@@ -5,8 +5,11 @@ const user = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setUserName(state, action) {
-      state.name = action.payload;
+    loginUser(state, { payload }) {
+      state.auth = {
+        accessToken: payload.access,
+        refreshToken: payload.refresh,
+      };
     },
   },
 });
