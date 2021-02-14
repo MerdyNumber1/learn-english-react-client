@@ -44,7 +44,7 @@ const LoginForm: React.FC = () => {
         placeholder="Пароль..."
         {...getFieldProps('password')}
       />
-      <Button className={styles.button} type="primary">
+      <Button className={styles.button} type="primary" htmlType="submit">
         Войти
       </Button>
       <div className={styles.signup}>

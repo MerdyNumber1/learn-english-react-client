@@ -1,12 +1,9 @@
-import axios from 'axios';
+import { default as axiosClient } from 'axios';
 
-export default axios.create({
+const axios = axiosClient.create({
   baseURL: process.env.REACT_APP_API_URL,
   headers: {
     common: {
-      'Cache-Control': 'no-cache, no-store, must-revalidate',
-      Pragma: 'no-cache',
-      'Content-Type': 'application/json',
       Accept: 'application/json',
     },
   },
@@ -14,12 +11,14 @@ export default axios.create({
 
 export function createUser(username: string, email: string, password: string) {
   return axios
-    .post('/users', {
+    .post('/users/', {
       username,
       email,
       password,
     })
-    .then(console.log);
+    .then((res) => res.data);
 }
 
 export function loginUser() {}
+
+export default axios;

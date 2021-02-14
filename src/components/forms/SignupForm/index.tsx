@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'store';
 import { useFormik } from 'formik';
 import { Link as RouterLink } from '@reach/router';
 import { Input, Alert, Button, Typography } from 'antd';
+import { signup } from 'store/modules/user/actions';
 import SignupSchema from './schema';
 import styles from './SignupForm.module.sass';
 
@@ -14,6 +16,8 @@ interface SignupFormValues {
 }
 
 const SignupForm: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
   const { getFieldProps, handleSubmit, errors, touched } = useFormik<SignupFormValues>({
     initialValues: {
       email: '',
@@ -22,7 +26,11 @@ const SignupForm: React.FC = () => {
     },
     validationSchema: SignupSchema,
     onSubmit(data) {
-      console.log(data);
+      setIsLoading(true);
+      dispatch(signup(data.name, data.email, data.password)).then(() => {
+        console.log('done');
+        setIsLoading(false);
+      });
     },
   });
 
@@ -50,7 +58,7 @@ const SignupForm: React.FC = () => {
         placeholder="Пароль..."
         {...getFieldProps('password')}
       />
-      <Button className={styles.button} type="primary">
+      <Button className={styles.button} type="primary" htmlType="submit" loading={isLoading}>
         Зарегистрироваться
       </Button>
       <div className={styles.login}>
