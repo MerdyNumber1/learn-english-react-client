@@ -10,8 +10,8 @@ const store = configureStore({
 
 export default store;
 
-export type AppDispatch = typeof store.dispatch;
-export const useDispatch = () => useActionDispatch<AppDispatch>();
+export type Dispatch = typeof store.dispatch;
+export const useDispatch = () => useActionDispatch<Dispatch>();
 
 export interface State {
   user: UserState;
