@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'store';
-import { ErrorMessage, Formik } from 'formik';
-import { Link as RouterLink } from '@reach/router';
-import { Input, Alert, Button, Typography } from 'antd';
-import { signup } from 'store/modules/user/actions';
-import { User } from 'services/models';
+import { Formik } from 'formik';
+import { Link } from '@reach/router';
+import { Input, Button, Typography } from 'antd';
+import { signup, login } from 'store/modules/user/actions';
+import { UserDTO } from 'services/models';
+import FormErrors from 'components/forms/FormErrors';
 import SignupSchema from './schema';
 import styles from './SignupForm.module.sass';
 
@@ -20,23 +21,21 @@ const SignupForm: React.FC = () => {
     password: '',
   };
 
-  const onSubmit = (data: User, { setErrors }: any) => {
+  const onSubmit = (data: UserDTO, { setErrors }: any) => {
     setIsLoading(true);
     dispatch(signup(data))
-      .then(() => console.log('woooow'))
-      .catch((err) => setErrors(err.response.data))
-      .finally(() => setIsLoading(false));
+      .then(() => dispatch(login({ email: data.email, password: data.password })))
+      .catch((err) => {
+        setIsLoading(false);
+        setErrors(err.response.data);
+      });
   };
 
   return (
     <Formik {...{ validationSchema: SignupSchema, initialValues, onSubmit }}>
       {({ handleSubmit, getFieldProps, errors }) => (
         <form action="" onSubmit={handleSubmit}>
-          {Object.keys(errors).map((key, index) => (
-            <ErrorMessage name={key} key={`${key}-${index}`}>
-              {(msg) => <Alert className={styles.error} type="error" message={msg} />}
-            </ErrorMessage>
-          ))}
+          <FormErrors errors={errors} />
           <Input
             className={styles.input}
             type="email"
@@ -60,7 +59,7 @@ const SignupForm: React.FC = () => {
           </Button>
           <div className={styles.login}>
             <Text>Или</Text>
-            <RouterLink to="/login"> войти</RouterLink>
+            <Link to="/login"> войти</Link>
           </div>
         </form>
       )}

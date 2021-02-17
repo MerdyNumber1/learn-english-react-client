@@ -25,6 +25,7 @@
     }
   },
   "rules": {
+    "import/no-cycle": "off",
     "react/no-array-index-key": "off",
     "operator-linebreak": "off",
     "implicit-arrow-linebreak": "off",

@@ -13,7 +13,7 @@ export default {
   username: '',
   email: '',
   auth: {
-    accessToken: '',
-    refreshToken: '',
+    accessToken: window.localStorage.getItem('access_token') || '',
+    refreshToken: window.localStorage.getItem('refresh_token') || '',
   },
 } as UserState;
