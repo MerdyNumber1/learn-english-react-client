@@ -10,6 +10,7 @@ export const signup = (user: UserDTO) => (dispatch: Dispatch) =>
 
 export const login = (authData: UserDTO) => (dispatch: Dispatch) => {
   getTokens(authData).then((data: TokensDTO) => {
+    console.log(data);
     window.localStorage.setItem('access_token', data.access);
     window.localStorage.setItem('refresh_token', data.refresh);
     dispatch(setAuthData(data));
@@ -22,6 +23,5 @@ export const logout = () => (dispatch: Dispatch) => {
   dispatch(clearUserInfo());
 };
 
-export const getCurrentUser = () => (dispatch: Dispatch) => {
+export const getCurrentUser = () => (dispatch: Dispatch) =>
   fetchCurrentProfile().then((data) => dispatch(setUserData(data)));
-};

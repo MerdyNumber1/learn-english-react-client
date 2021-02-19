@@ -10,7 +10,7 @@ interface SuspenseFallbackProps {
 
 const Fallback: React.FC = () => {
   useMount(NProgress.start);
-  useUnmount(NProgress.done());
+  useUnmount(NProgress.done);
 
   return (
     <div className={styles.container}>

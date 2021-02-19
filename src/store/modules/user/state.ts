@@ -9,6 +9,8 @@ export interface UserState {
   auth: UserAuthState;
 }
 
+console.log(window.localStorage.getItem('access_token') || false);
+
 export default {
   username: '',
   email: '',

@@ -3,7 +3,7 @@ import { logout } from 'store/modules/user/actions';
 import store from 'store';
 import { UserDTO, TokensDTO } from './models';
 
-const { dispatch } = store;
+const { dispatch, getState } = store;
 
 const axios = axiosClient.create({
   baseURL: process.env.REACT_APP_API_URL,
@@ -17,11 +17,19 @@ const axios = axiosClient.create({
 axios.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response.status === 401) {
-      dispatch(logout());
-    }
+    if (error.response.status === 401) dispatch(logout());
     return error;
   },
+);
+
+axios.interceptors.request.use(
+  (config) => {
+    const token = getState().user.auth.accessToken;
+
+    if (token) config.headers.Authorization = `Bearer ${token}`;
+    return config;
+  },
+  (error) => error,
 );
 
 export function createUser(user: UserDTO) {
