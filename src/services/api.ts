@@ -17,8 +17,8 @@ const axios = axiosClient.create({
 axios.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response.status === 401) dispatch(logout());
-    return error;
+    if (error.response && error.response.status === 401) dispatch(logout());
+    return Promise.reject(error);
   },
 );
 
@@ -29,7 +29,7 @@ axios.interceptors.request.use(
     if (token) config.headers.Authorization = `Bearer ${token}`;
     return config;
   },
-  (error) => error,
+  (error) => Promise.reject(error),
 );
 
 export function createUser(user: UserDTO) {

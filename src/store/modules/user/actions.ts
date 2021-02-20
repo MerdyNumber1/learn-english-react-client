@@ -1,3 +1,4 @@
+import { navigate } from '@reach/router';
 import { createUser, getTokens, fetchCurrentProfile } from 'services/api';
 import { Dispatch } from 'store';
 import { TokensDTO, UserDTO } from 'services/models';
@@ -14,6 +15,7 @@ export const login = (authData: UserDTO) => (dispatch: Dispatch) => {
     window.localStorage.setItem('access_token', data.access);
     window.localStorage.setItem('refresh_token', data.refresh);
     dispatch(setAuthData(data));
+    navigate('/');
   });
 };
 
@@ -21,6 +23,7 @@ export const logout = () => (dispatch: Dispatch) => {
   window.localStorage.removeItem('access_token');
   window.localStorage.removeItem('refresh_token');
   dispatch(clearUserInfo());
+  navigate('/');
 };
 
 export const getCurrentUser = () => (dispatch: Dispatch) =>
