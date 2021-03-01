@@ -9,15 +9,13 @@ const { setAuthData, setUserData, clearUserInfo } = userSlice.actions;
 export const signup = (user: UserDTO) => (dispatch: Dispatch) =>
   createUser(user).then((data: UserDTO) => dispatch(setUserData(data)));
 
-export const login = (authData: UserDTO) => (dispatch: Dispatch) => {
+export const login = (authData: UserDTO) => (dispatch: Dispatch) =>
   getTokens(authData).then((data: TokensDTO) => {
-    console.log(data);
     window.localStorage.setItem('access_token', data.access);
     window.localStorage.setItem('refresh_token', data.refresh);
     dispatch(setAuthData(data));
     navigate('/');
   });
-};
 
 export const logout = () => (dispatch: Dispatch) => {
   window.localStorage.removeItem('access_token');
