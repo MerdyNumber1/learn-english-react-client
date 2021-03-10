@@ -3,7 +3,7 @@ import { useDispatch } from 'store';
 import { Formik } from 'formik';
 import { Link } from '@reach/router';
 import { Input, Button, Typography } from 'antd';
-import { signup, login } from 'store/modules/user/actions';
+import { signup, login } from 'store/user/actions';
 import { UserDTO } from 'services/models';
 import FormErrors from 'components/forms/FormErrors';
 import SignupSchema from './schema';

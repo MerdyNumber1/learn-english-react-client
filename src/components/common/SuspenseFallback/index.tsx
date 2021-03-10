@@ -2,25 +2,29 @@ import React, { Suspense } from 'react';
 import { useMount, useUnmount } from '@umijs/hooks';
 import { Spin } from 'antd';
 import NProgress from 'nprogress';
-import styles from './SuspenseFallback.module.sass';
+import styled from 'styled-components';
 
-interface SuspenseFallbackProps {
-  children: React.ReactNode;
-}
-
-const Fallback: React.FC = () => {
+export const Fallback: React.VFC = () => {
   useMount(NProgress.start);
   useUnmount(NProgress.done);
 
   return (
-    <div className={styles.container}>
+    <FallbackContainer>
       <Spin size="large" />
-    </div>
+    </FallbackContainer>
   );
 };
 
-const SuspenseFallback: React.FC<SuspenseFallbackProps> = ({ children }) => (
+const SuspenseFallback: React.FC = ({ children }) => (
   <Suspense fallback={<Fallback />}>{children}</Suspense>
 );
+
+export const FallbackContainer = styled.section`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 export default SuspenseFallback;

@@ -17,7 +17,7 @@ interface AuthBaseFormProps {
 
 export type OnSubmitCallback = (data: UserDTO, { setErrors }: any) => Promise<any>;
 
-const AuthBaseForm: React.FC<AuthBaseFormProps> = ({
+const AuthBaseForm: React.VFC<AuthBaseFormProps> = ({
   title,
   onSubmitParentCallback,
   initialValues,

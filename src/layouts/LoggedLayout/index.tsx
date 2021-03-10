@@ -4,7 +4,7 @@ import { Layout, Menu } from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 import Nav from 'components/common/Nav';
 import { useDispatch } from 'store';
-import { getCurrentUser } from 'store/modules/user/actions';
+import { getCurrentUser } from 'store/user/actions';
 import styles from './LoggedLayout.module.sass';
 
 const { Header, Content, Sider } = Layout;

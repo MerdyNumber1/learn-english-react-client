@@ -1,6 +1,6 @@
 import { navigate } from '@reach/router';
 import { createUser, getTokens, fetchCurrentProfile } from 'services/api';
-import { Dispatch } from 'store';
+import { Dispatch } from 'store/index';
 import { TokensDTO, UserDTO } from 'services/models';
 import userSlice from './index';
 

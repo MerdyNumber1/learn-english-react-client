@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Router } from '@reach/router';
 import SuspenseFallback from 'components/common/SuspenseFallback';
-import { hasUserLogged } from 'store/modules/user/selectors';
+import { hasUserLogged } from 'store/user/selectors';
 
 const NotLoggedLayout = React.lazy(() => import('layouts/NotLoggedLayout'));
 const LoggedLayout = React.lazy(() => import('layouts/LoggedLayout'));

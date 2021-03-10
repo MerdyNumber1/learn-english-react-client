@@ -5,7 +5,7 @@ import { Input, Typography } from 'antd';
 import FormErrors from 'components/forms/FormErrors';
 import { useDispatch } from 'store';
 import AuthBaseForm, { OnSubmitCallback } from 'components/forms/AuthBaseForm';
-import { login } from 'store/modules/user/actions';
+import { login } from 'store/user/actions';
 import LoginSchema from './schema';
 import styles from './LoginForm.module.sass';
 

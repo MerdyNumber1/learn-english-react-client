@@ -1,5 +1,5 @@
 import { default as axiosClient } from 'axios';
-import { logout } from 'store/modules/user/actions';
+import { logout } from 'store/user/actions';
 import store from 'store';
 import { UserDTO, TokensDTO } from './models';
 
