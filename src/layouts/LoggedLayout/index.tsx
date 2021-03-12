@@ -3,11 +3,10 @@ import { useMount } from '@umijs/hooks';
 import { Layout, Menu } from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 import Nav from 'components/common/Nav';
-import { useDispatch } from 'store';
-import { getCurrentUser } from 'store/user/actions';
-import styles from './LoggedLayout.module.sass';
+import { LayoutContent, LayoutContainer } from 'layouts';
+import { useUser } from '../../hooks/useUser';
 
-const { Header, Content, Sider } = Layout;
+const { Header, Sider } = Layout;
 const { SubMenu } = Menu;
 
 interface LoggedLayoutProps {
@@ -15,16 +14,16 @@ interface LoggedLayoutProps {
 }
 
 const LoggedLayout: React.FC<LoggedLayoutProps> = ({ children }) => {
-  const dispatch = useDispatch();
+  const { getCurrentUser } = useUser();
 
-  useMount(() => dispatch(getCurrentUser()));
+  useMount(getCurrentUser);
 
   return (
     <Layout>
       <Header>
         <Nav isLogged />
       </Header>
-      <Layout className={styles.layout}>
+      <LayoutContainer>
         <Sider width={200} className="site-layout-background">
           <Menu
             mode="inline"
@@ -53,9 +52,9 @@ const LoggedLayout: React.FC<LoggedLayoutProps> = ({ children }) => {
           </Menu>
         </Sider>
         <Layout>
-          <Content className={styles.content}>{children}</Content>
+          <LayoutContent>{children}</LayoutContent>
         </Layout>
-      </Layout>
+      </LayoutContainer>
     </Layout>
   );
 };

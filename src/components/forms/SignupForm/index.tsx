@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'store';
-import { Formik } from 'formik';
 import { Link } from '@reach/router';
 import { Input, Button, Typography } from 'antd';
-import { signup, login } from 'store/user/actions';
 import { UserDTO } from 'services/models';
-import FormErrors from 'components/forms/FormErrors';
+import { BaseForm, OnSubmitCallback } from 'components/forms/BaseForm';
+import { useUser } from 'hooks/useUser';
 import SignupSchema from './schema';
 import styles from './SignupForm.module.sass';
 
 const { Text } = Typography;
 
-const SignupForm: React.FC = () => {
-  const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+export const SignupForm: React.FC = () => {
+  const { signup, login } = useUser();
+  const [isLoading, setIsLoading] = useState(false);
 
   const initialValues = {
     email: '',
@@ -21,10 +19,10 @@ const SignupForm: React.FC = () => {
     password: '',
   };
 
-  const onSubmit = (data: UserDTO, { setErrors }: any) => {
+  const onSubmit: OnSubmitCallback<UserDTO> = (data, { setErrors }) => {
     setIsLoading(true);
-    dispatch(signup(data))
-      .then(() => dispatch(login({ email: data.email, password: data.password })))
+    signup(data)
+      .then(() => login({ email: data.email, password: data.password }))
       .catch((err) => {
         setIsLoading(false);
         setErrors(err.response.data);
@@ -32,10 +30,14 @@ const SignupForm: React.FC = () => {
   };
 
   return (
-    <Formik {...{ validationSchema: SignupSchema, initialValues, onSubmit }}>
-      {({ handleSubmit, getFieldProps, errors }) => (
-        <form action="" onSubmit={handleSubmit}>
-          <FormErrors errors={errors} />
+    <BaseForm
+      initialValues={initialValues}
+      onSubmit={onSubmit}
+      title="Зарегистрироваться"
+      validationSchema={SignupSchema}
+    >
+      {(getFieldProps) => (
+        <>
           <Input
             className={styles.input}
             type="email"
@@ -44,7 +46,7 @@ const SignupForm: React.FC = () => {
           />
           <Input
             className={styles.input}
-            type="username"
+            type="text"
             placeholder="Имя..."
             {...getFieldProps('username')}
           />
@@ -61,10 +63,8 @@ const SignupForm: React.FC = () => {
             <Text>Или</Text>
             <Link to="/login"> войти</Link>
           </div>
-        </form>
+        </>
       )}
-    </Formik>
+    </BaseForm>
   );
 };
-
-export default SignupForm;

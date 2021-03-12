@@ -17,7 +17,9 @@ const axios = axiosClient.create({
 axios.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response && error.response.status === 401) dispatch(logout());
+    if (error.response && error.response.status === 401) {
+      dispatch(logout());
+    }
     return Promise.reject(error);
   },
 );
@@ -26,22 +28,20 @@ axios.interceptors.request.use(
   (config) => {
     const token = getState().user.auth.accessToken;
 
-    if (token) config.headers.Authorization = `Bearer ${token}`;
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
     return config;
   },
   (error) => Promise.reject(error),
 );
 
-export function createUser(user: UserDTO) {
-  return axios.post<UserDTO>('/users/', user).then((res) => res.data);
-}
+export const createUser = (user: UserDTO) =>
+  axios.post<UserDTO>('/users/', user).then((res) => res.data);
 
-export function getTokens(authData: UserDTO) {
-  return axios.post<TokensDTO>('/users/token/', authData).then((res) => res.data);
-}
+export const getTokens = (authData: UserDTO) =>
+  axios.post<TokensDTO>('/users/token/', authData).then((res) => res.data);
 
-export function fetchCurrentProfile() {
-  return axios.get<UserDTO>('/users/me').then((res) => res.data);
-}
+export const fetchCurrentProfile = () => axios.get<UserDTO>('/users/me').then((res) => res.data);
 
 export default axios;

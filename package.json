@@ -43,7 +43,8 @@
     "eject": "react-scripts eject",
     "format": "prettier  --write src/**/*.{js,ts,tsx,jsx}",
     "lint": "eslint .",
-    "analyze": "source-map-explorer 'build/static/js/*.js'"
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
+    "postinstall": "husky install"
   },
   "eslintConfig": {
     "extends": [

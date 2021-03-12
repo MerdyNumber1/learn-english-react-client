@@ -15,7 +15,7 @@ export const Fallback: React.VFC = () => {
   );
 };
 
-const SuspenseFallback: React.FC = ({ children }) => (
+export const SuspenseFallback: React.FC = ({ children }) => (
   <Suspense fallback={<Fallback />}>{children}</Suspense>
 );
 
@@ -26,5 +26,3 @@ export const FallbackContainer = styled.section`
   align-items: center;
   justify-content: center;
 `;
-
-export default SuspenseFallback;
