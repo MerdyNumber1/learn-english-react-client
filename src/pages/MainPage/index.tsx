@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
-const MainPage: React.FC = () => (
+export const MainPage: React.FC = () => (
   <>
     <Helmet>
       <title>Главная</title>
@@ -9,5 +9,3 @@ const MainPage: React.FC = () => (
     <div>Главная</div>
   </>
 );
-
-export default MainPage;

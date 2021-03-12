@@ -1,9 +1,9 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { SignupForm } from 'components/forms/SignupForm';
-import { AuthPageContainer } from 'pages/AuthPageContainer';
+import { AuthPageContainer } from 'pages';
 
-const SignupPage: React.FC = () => (
+export const SignupPage: React.FC = () => (
   <>
     <Helmet>
       <title>Регистрация</title>
@@ -13,5 +13,3 @@ const SignupPage: React.FC = () => (
     </AuthPageContainer>
   </>
 );
-
-export default SignupPage;

@@ -13,7 +13,7 @@ interface LoggedLayoutProps {
   children: React.ReactNode;
 }
 
-const LoggedLayout: React.FC<LoggedLayoutProps> = ({ children }) => {
+export const LoggedLayout: React.FC<LoggedLayoutProps> = ({ children }) => {
   const { getCurrentUser } = useUser();
 
   useMount(getCurrentUser);
@@ -58,5 +58,3 @@ const LoggedLayout: React.FC<LoggedLayoutProps> = ({ children }) => {
     </Layout>
   );
 };
-
-export default LoggedLayout;

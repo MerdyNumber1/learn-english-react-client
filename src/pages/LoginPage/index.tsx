@@ -1,9 +1,9 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { LoginForm } from 'components/forms/LoginForm';
-import { AuthPageContainer } from 'pages/AuthPageContainer';
+import { AuthPageContainer } from 'pages';
 
-const LoginPage: React.FC = () => (
+export const LoginPage: React.FC = () => (
   <>
     <Helmet>
       <title>Войти</title>
@@ -13,5 +13,3 @@ const LoginPage: React.FC = () => (
     </AuthPageContainer>
   </>
 );
-
-export default LoginPage;

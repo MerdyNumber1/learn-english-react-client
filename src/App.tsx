@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { Helmet } from 'react-helmet';
-import Routes from './routes';
+import { Routes } from './routes';
 import 'antd/dist/antd.css';
 import store from './store';
 

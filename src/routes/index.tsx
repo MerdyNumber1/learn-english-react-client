@@ -2,15 +2,16 @@ import React from 'react';
 import { Router } from '@reach/router';
 import { SuspenseFallback } from 'components/common/SuspenseFallback';
 import { useUser } from 'hooks/useUser';
+import { lazyImport } from '../utils/lazyNamedImport';
 
-const NotLoggedLayout = React.lazy(() => import('layouts/NotLoggedLayout'));
-const LoggedLayout = React.lazy(() => import('layouts/LoggedLayout'));
+const NotLoggedLayout = lazyImport(() => import('layouts/NotLoggedLayout'), 'NotLoggedLayout');
+const LoggedLayout = lazyImport(() => import('layouts/LoggedLayout'), 'LoggedLayout');
 
-const MainPage = React.lazy(() => import('pages/MainPage'));
-const LoginPage = React.lazy(() => import('pages/LoginPage'));
-const SignupPage = React.lazy(() => import('pages/SignupPage'));
+const MainPage = lazyImport(() => import('pages/MainPage'), 'MainPage');
+const LoginPage = lazyImport(() => import('pages/LoginPage'), 'LoginPage');
+const SignupPage = lazyImport(() => import('pages/SignupPage'), 'SignupPage');
 
-const Routes: React.VFC = () => {
+export const Routes: React.VFC = () => {
   const { isLogged } = useUser();
 
   return (
@@ -31,5 +32,3 @@ const Routes: React.VFC = () => {
     </SuspenseFallback>
   );
 };
-
-export default Routes;

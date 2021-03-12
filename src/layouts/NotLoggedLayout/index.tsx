@@ -9,7 +9,7 @@ interface NotLoggedLayoutProps {
   children: React.ReactNode;
 }
 
-const NotLoggedLayout: React.FC<NotLoggedLayoutProps> = ({ children }) => (
+export const NotLoggedLayout: React.FC<NotLoggedLayoutProps> = ({ children }) => (
   <Layout>
     <Header>
       <Nav />
@@ -19,5 +19,3 @@ const NotLoggedLayout: React.FC<NotLoggedLayoutProps> = ({ children }) => (
     </LayoutContainer>
   </Layout>
 );
-
-export default NotLoggedLayout;
