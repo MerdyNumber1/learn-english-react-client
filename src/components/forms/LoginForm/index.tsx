@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from '@reach/router';
 import { Typography } from 'antd';
 import {
-  OnSubmitCallback,
   BaseForm,
   BaseInput as Input,
   BaseSubmitButton as Button,
@@ -10,6 +9,7 @@ import {
 } from 'components/forms/BaseForm';
 import { UserDTO } from 'services/models';
 import { useUser } from 'hooks/useUser';
+import { FormikConfig } from 'formik';
 import LoginSchema from './schema';
 
 const { Text } = Typography;
@@ -23,10 +23,10 @@ export const LoginForm: React.FC = () => {
     password: '',
   };
 
-  const onSubmit: OnSubmitCallback<UserDTO> = (data, { setErrors }) => {
+  const onSubmit: FormikConfig<UserDTO>['onSubmit'] = (data, { setErrors }) => {
     setIsLoading(true);
     login({ email: data.email, password: data.password }).catch((err) => {
-      setIsLoading(true);
+      setIsLoading(false);
       setErrors(err.response.data);
     });
   };

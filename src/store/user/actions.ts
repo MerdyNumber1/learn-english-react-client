@@ -21,9 +21,9 @@ export const login = (authData: UserDTO) => (dispatch: Dispatch) =>
   });
 
 export const logout = () => (dispatch: Dispatch) => {
-  removeItems(['access_token', 'refresh_token']);
+  removeItems('access_token', 'refresh_token');
   dispatch(clearUserInfo());
-  navigate('/');
+  navigate('/login');
 };
 
 export const getCurrentUser = () => (dispatch: Dispatch) =>

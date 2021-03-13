@@ -21,7 +21,7 @@ export const LoggedLayout: React.FC<LoggedLayoutProps> = ({ children }) => {
   return (
     <Layout>
       <Header>
-        <Nav isLogged />
+        <Nav />
       </Header>
       <LayoutContainer>
         <Sider width={200} className="site-layout-background">

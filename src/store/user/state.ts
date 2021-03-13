@@ -1,3 +1,5 @@
+import { getItem } from 'services/storage';
+
 export interface UserAuthState {
   accessToken: string;
   refreshToken: string;
@@ -13,7 +15,7 @@ export default {
   username: '',
   email: '',
   auth: {
-    accessToken: window.localStorage.getItem('access_token') || '',
-    refreshToken: window.localStorage.getItem('refresh_token') || '',
+    accessToken: getItem('access_token'),
+    refreshToken: getItem('refresh_token'),
   },
 } as UserState;

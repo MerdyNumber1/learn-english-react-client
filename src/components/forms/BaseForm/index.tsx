@@ -1,20 +1,18 @@
 import React from 'react';
 import { Typography, Input, Button } from 'antd';
-import { Formik, FormikHandlers } from 'formik';
+import { Formik, FormikConfig, FormikHandlers } from 'formik';
 import styled from 'styled-components';
-import FormErrors from 'components/forms/FormErrors';
+import { FormErrors } from 'components/forms/FormErrors';
 
 const { Title } = Typography;
 
 interface AuthBaseFormProps {
   title: string;
-  onSubmit: OnSubmitCallback<any>;
+  onSubmit: FormikConfig<any>['onSubmit'];
   initialValues: any;
   validationSchema: any;
   children: (getFieldProps: FormikHandlers['getFieldProps']) => React.ReactElement;
 }
-
-export type OnSubmitCallback<T> = (data: T, { setErrors }: any) => any;
 
 export const BaseForm: React.FC<AuthBaseFormProps> = ({
   title,
