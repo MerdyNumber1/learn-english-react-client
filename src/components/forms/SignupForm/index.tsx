@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from '@reach/router';
-import { Input, Button, Typography } from 'antd';
+import { Typography } from 'antd';
 import { UserDTO } from 'services/models';
-import { BaseForm, OnSubmitCallback } from 'components/forms/BaseForm';
+import {
+  OnSubmitCallback,
+  BaseForm,
+  BaseInput as Input,
+  BaseSubmitButton as Button,
+  Hint,
+} from 'components/forms/BaseForm';
 import { useUser } from 'hooks/useUser';
 import SignupSchema from './schema';
-import styles from './SignupForm.module.sass';
 
 const { Text } = Typography;
 
@@ -38,31 +43,16 @@ export const SignupForm: React.FC = () => {
     >
       {(getFieldProps) => (
         <>
-          <Input
-            className={styles.input}
-            type="email"
-            placeholder="Email..."
-            {...getFieldProps('email')}
-          />
-          <Input
-            className={styles.input}
-            type="text"
-            placeholder="Имя..."
-            {...getFieldProps('username')}
-          />
-          <Input
-            className={styles.input}
-            type="password"
-            placeholder="Пароль..."
-            {...getFieldProps('password')}
-          />
-          <Button className={styles.button} type="primary" htmlType="submit" loading={isLoading}>
+          <Input type="email" placeholder="Email..." {...getFieldProps('email')} />
+          <Input type="text" placeholder="Имя..." {...getFieldProps('username')} />
+          <Input type="password" placeholder="Пароль..." {...getFieldProps('password')} />
+          <Button type="primary" htmlType="submit" loading={isLoading}>
             Зарегистрироваться
           </Button>
-          <div className={styles.login}>
+          <Hint>
             <Text>Или</Text>
             <Link to="/login"> войти</Link>
-          </div>
+          </Hint>
         </>
       )}
     </BaseForm>

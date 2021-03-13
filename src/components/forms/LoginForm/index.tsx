@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from '@reach/router';
-import { Button, Input, Typography } from 'antd';
-import { OnSubmitCallback, BaseForm } from 'components/forms/BaseForm';
+import { Typography } from 'antd';
+import {
+  OnSubmitCallback,
+  BaseForm,
+  BaseInput as Input,
+  BaseSubmitButton as Button,
+  Hint,
+} from 'components/forms/BaseForm';
 import { UserDTO } from 'services/models';
 import { useUser } from 'hooks/useUser';
 import LoginSchema from './schema';
-import styles from './LoginForm.module.sass';
 
 const { Text } = Typography;
 
@@ -35,20 +40,15 @@ export const LoginForm: React.FC = () => {
     >
       {(getFieldProps) => (
         <>
-          <Input className={styles.input} placeholder="Email..." {...getFieldProps('email')} />
-          <Input
-            className={styles.input}
-            placeholder="Пароль..."
-            type="password"
-            {...getFieldProps('password')}
-          />
-          <Button className={styles.button} type="primary" htmlType="submit" loading={isLoading}>
+          <Input placeholder="Email..." {...getFieldProps('email')} />
+          <Input placeholder="Пароль..." type="password" {...getFieldProps('password')} />
+          <Button type="primary" htmlType="submit" loading={isLoading}>
             Войти
           </Button>
-          <div className={styles.signup}>
+          <Hint>
             <Text>Или</Text>
             <Link to="/signup"> зарегистрироваться</Link>
-          </div>
+          </Hint>
         </>
       )}
     </BaseForm>

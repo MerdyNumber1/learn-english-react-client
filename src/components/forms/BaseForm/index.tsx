@@ -1,7 +1,8 @@
 import React from 'react';
-import { Typography } from 'antd';
+import { Typography, Input, Button } from 'antd';
 import { Formik, FormikHandlers } from 'formik';
-import FormErrors from '../FormErrors';
+import styled from 'styled-components';
+import FormErrors from 'components/forms/FormErrors';
 
 const { Title } = Typography;
 
@@ -34,3 +35,17 @@ export const BaseForm: React.FC<AuthBaseFormProps> = ({
     </Formik>
   </div>
 );
+
+export const BaseInput = styled(Input)`
+  margin: 5px 0;
+`;
+
+export const BaseSubmitButton = styled(Button)`
+  margin-top: 15px;
+  margin-right: 10px;
+`;
+
+export const Hint = styled.div`
+  margin-left: 10px;
+  display: inline-block;
+`;
