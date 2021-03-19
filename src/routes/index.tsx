@@ -2,7 +2,7 @@ import React from 'react';
 import { Router } from '@reach/router';
 import { SuspenseFallback } from 'components/common/SuspenseFallback';
 import { useUser } from 'hooks/useUser';
-import { lazyImport } from '../utils/lazyNamedImport';
+import { lazyImport } from 'utils/lazyNamedImport';
 
 const NotLoggedLayout = lazyImport(() => import('layouts/NotLoggedLayout'), 'NotLoggedLayout');
 const LoggedLayout = lazyImport(() => import('layouts/LoggedLayout'), 'LoggedLayout');
@@ -10,6 +10,7 @@ const LoggedLayout = lazyImport(() => import('layouts/LoggedLayout'), 'LoggedLay
 const MainPage = lazyImport(() => import('pages/MainPage'), 'MainPage');
 const LoginPage = lazyImport(() => import('pages/LoginPage'), 'LoginPage');
 const SignupPage = lazyImport(() => import('pages/SignupPage'), 'SignupPage');
+const ProfilePage = lazyImport(() => import('pages/ProfilePage'), 'ProfilePage');
 
 export const Routes: React.VFC = () => {
   const { isLogged } = useUser();
@@ -19,7 +20,7 @@ export const Routes: React.VFC = () => {
       <Router>
         {isLogged ? (
           <LoggedLayout path="/">
-            <MainPage path="/" />
+            <ProfilePage path="/" />
           </LoggedLayout>
         ) : (
           <NotLoggedLayout path="/">
