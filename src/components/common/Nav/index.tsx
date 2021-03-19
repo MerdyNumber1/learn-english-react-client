@@ -3,7 +3,7 @@ import { Menu } from 'antd';
 import { Link, useLocation } from '@reach/router';
 import { useUser } from 'hooks/useUser';
 
-const Nav: React.VFC = () => {
+export const Nav: React.VFC = () => {
   const location = useLocation();
   const { isLogged, logout } = useUser();
 
@@ -29,5 +29,3 @@ const Nav: React.VFC = () => {
     </Menu>
   );
 };
-
-export default Nav;

@@ -1,7 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
 
-export const AuthPageContainer: React.FC = styled.section`
+export const AuthPageWrapper = styled.section`
   max-width: 400px;
   margin: 0 auto;
   height: 100%;

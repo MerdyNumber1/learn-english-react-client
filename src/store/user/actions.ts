@@ -3,7 +3,7 @@ import { createUser, getTokens, fetchCurrentProfile } from 'services/api';
 import { Dispatch } from 'store/index';
 import { removeItems, setItems } from 'services/storage';
 import { TokensDTO, UserDTO } from 'services/models';
-import userSlice from './index';
+import { userSlice } from './index';
 
 const { setAuthData, setUserData, clearUserInfo } = userSlice.actions;
 

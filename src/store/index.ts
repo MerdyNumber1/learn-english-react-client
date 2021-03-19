@@ -1,6 +1,6 @@
 import { useDispatch as useActionDispatch } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
-import reducers from './reducers';
+import { reducers } from './reducers';
 import { UserState } from './user/state';
 
 const store = configureStore({

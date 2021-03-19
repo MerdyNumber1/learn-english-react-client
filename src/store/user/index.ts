@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TokensDTO, UserDTO } from 'services/models';
 import initialState from './state';
 
-const userSlice = createSlice({
+export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
@@ -19,5 +19,3 @@ const userSlice = createSlice({
     },
   },
 });
-
-export default userSlice;

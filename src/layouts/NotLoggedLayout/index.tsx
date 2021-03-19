@@ -1,18 +1,18 @@
 import React from 'react';
-import Nav from 'components/common/Nav';
-import { LayoutContainer, LayoutContent, MainLayout, MainHeader } from 'layouts';
+import { Nav } from 'components/common/Nav';
+import { Layout } from 'antd';
+import { LayoutWrapper } from 'layouts/LayoutWrapper';
+import { LayoutContent } from 'layouts/LayoutContent';
 
-interface NotLoggedLayoutProps {
-  children: React.ReactNode;
-}
+const { Header } = Layout;
 
-export const NotLoggedLayout: React.FC<NotLoggedLayoutProps> = ({ children }) => (
-  <MainLayout>
-    <MainHeader>
+export const NotLoggedLayout: React.FC = ({ children }) => (
+  <LayoutWrapper>
+    <Header>
       <Nav />
-    </MainHeader>
-    <LayoutContainer>
+    </Header>
+    <Layout>
       <LayoutContent>{children}</LayoutContent>
-    </LayoutContainer>
-  </MainLayout>
+    </Layout>
+  </LayoutWrapper>
 );

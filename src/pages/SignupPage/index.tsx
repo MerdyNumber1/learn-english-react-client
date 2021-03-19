@@ -1,15 +1,15 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { SignupForm } from 'components/forms/SignupForm';
-import { AuthPageContainer } from 'pages';
+import { AuthPageWrapper } from 'pages/AuthPageWrapper';
 
 export const SignupPage: React.FC = () => (
   <>
     <Helmet>
       <title>Регистрация</title>
     </Helmet>
-    <AuthPageContainer>
+    <AuthPageWrapper>
       <SignupForm />
-    </AuthPageContainer>
+    </AuthPageWrapper>
   </>
 );
