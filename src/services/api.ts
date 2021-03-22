@@ -1,11 +1,11 @@
 import { default as axiosClient } from 'axios';
 import { logout } from 'store/user/actions';
-import store from 'store';
-import { UserDTO, TokensDTO } from './models';
+import { store } from 'store';
+import { UserDTO, TokensDTO, TopicDTO } from './models';
 
 const { dispatch, getState } = store;
 
-const axios = axiosClient.create({
+export const axios = axiosClient.create({
   baseURL: process.env.REACT_APP_API_URL,
   headers: {
     common: {
@@ -26,7 +26,7 @@ axios.interceptors.response.use(
 
 axios.interceptors.request.use(
   (config) => {
-    const token = getState().user.auth.accessToken;
+    const token = getState().user.auth.tokens.access;
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
@@ -44,4 +44,4 @@ export const getTokens = (authData: UserDTO) =>
 
 export const fetchCurrentProfile = () => axios.get<UserDTO>('/users/me').then((res) => res.data);
 
-export default axios;
+export const fetchTopics = () => axios.get<TopicDTO[]>('/topics/').then((res) => res.data);

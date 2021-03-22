@@ -2,7 +2,7 @@ import React from 'react';
 import { Menu } from 'antd';
 import { LaptopOutlined, SwitcherOutlined, UserOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
-import { useLocation } from '@reach/router';
+import { Link, useLocation } from '@reach/router';
 
 const { SubMenu } = Menu;
 
@@ -12,7 +12,7 @@ export const SidebarMenu: React.FC = () => {
   return (
     <MenuWrapper mode="inline" defaultSelectedKeys={['/']} selectedKeys={[location.pathname]}>
       <Menu.Item icon={<UserOutlined />} key="/">
-        Профиль
+        <Link to="/">Профиль</Link>
       </Menu.Item>
       <SubMenu key="/theory" icon={<LaptopOutlined />} title="Теория">
         <Menu.Item key="5">option5</Menu.Item>

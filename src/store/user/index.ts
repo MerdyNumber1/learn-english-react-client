@@ -1,20 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TokensDTO, UserDTO } from 'services/models';
-import initialState from './state';
+import { initialState } from './state';
 
 export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setUserData(state, { payload }: PayloadAction<UserDTO>) {
-      state.email = payload.email;
-      state.username = payload.username || '';
+    setUserInfo(state, { payload }: PayloadAction<UserDTO>) {
+      state.info.email = payload.email;
+      state.info.username = payload.username || null;
+      state.info.registrationDate = payload.registration_date || null;
     },
     setAuthData(state, { payload }: PayloadAction<TokensDTO>) {
-      state.auth.accessToken = payload.access;
-      state.auth.refreshToken = payload.refresh;
+      state.auth.tokens = payload;
     },
-    clearUserInfo() {
+    clearUserData() {
       return initialState;
     },
   },

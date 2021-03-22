@@ -9,6 +9,7 @@ export const ProfileDescription: React.FC = () => {
     <Descriptions title="Информация">
       <Descriptions.Item label="Имя">{userData.username}</Descriptions.Item>
       <Descriptions.Item label="Email">{userData.email}</Descriptions.Item>
+      <Descriptions.Item label="Дата регистрации">{userData.registrationDate}</Descriptions.Item>
     </Descriptions>
   );
 };

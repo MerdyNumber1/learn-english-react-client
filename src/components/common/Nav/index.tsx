@@ -15,7 +15,7 @@ export const Nav: React.VFC = () => {
       selectedKeys={[location.pathname]}
     >
       <Menu.Item key="/">
-        <Link to="/">Главная</Link>
+        <Link to="/">{!isLogged ? 'Главная' : 'Профиль'}</Link>
       </Menu.Item>
       {!isLogged ? (
         <Menu.Item key="/login">
