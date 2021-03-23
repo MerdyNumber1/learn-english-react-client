@@ -18,4 +18,12 @@ export interface TopicDTO {
   readonly id: ID;
   title: string;
   description: string | null;
+  articles: Pick<ArticleDTO, 'title'>[];
+}
+
+export interface ArticleDTO {
+  readonly id: ID;
+  title: string;
+  content: string;
+  topic: TopicDTO;
 }

@@ -2,10 +2,8 @@ import React from 'react';
 import { useTheory } from 'hooks/useTheory';
 import { useMount } from '@umijs/hooks';
 import { ID } from 'services/models';
-import { Typography } from 'antd';
 import { SpinnerSplash } from 'components/common/SpinnerSplash';
-
-const { Title } = Typography;
+import { TopicCard } from 'components/theory/TopicCard';
 
 interface ArticlesPageProps {
   topicId: ID;
@@ -21,5 +19,5 @@ export const ArticlesPage: React.VFC<ArticlesPageProps> = ({ topicId }) => {
     }
   });
 
-  return topic ? <Title>{topic.title}</Title> : <SpinnerSplash size="large" />;
+  return topic ? <TopicCard topic={topic} /> : <SpinnerSplash size="large" />;
 };
