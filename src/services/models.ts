@@ -18,7 +18,7 @@ export interface TopicDTO {
   readonly id: ID;
   title: string;
   description: string | null;
-  articles: Pick<ArticleDTO, 'title'>[];
+  articles: Pick<ArticleDTO, 'title' | 'id'>[];
 }
 
 export interface ArticleDTO {

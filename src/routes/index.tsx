@@ -13,6 +13,7 @@ const SignupPage = lazyImport(() => import('pages/SignupPage'), 'SignupPage');
 const ProfilePage = lazyImport(() => import('pages/ProfilePage'), 'ProfilePage');
 const ExercisesPage = lazyImport(() => import('pages/ExercisesPage'), 'ExercisesPage');
 const ArticlesPage = lazyImport(() => import('pages/ArticlesPage'), 'ArticlesPage');
+const ArticlePage = lazyImport(() => import('pages/ArticlePage'), 'ArticlePage');
 
 export const Routes: React.VFC = () => {
   const { isLogged } = useUser();
@@ -25,6 +26,7 @@ export const Routes: React.VFC = () => {
             <ProfilePage path="/" />
             <ExercisesPage path="/exercises" />
             <ArticlesPage path="/articles/:topicId" />
+            <ArticlePage path="/articles/:topicId/:articleId" />
           </LoggedLayout>
         ) : (
           <NotLoggedLayout path="/">

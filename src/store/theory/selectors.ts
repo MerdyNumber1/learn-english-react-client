@@ -1,4 +1,7 @@
 import { State } from 'store';
-import { topicsAdapter } from './index';
+import { articlesAdapter, topicsAdapter } from './index';
 
 export const topicsSelectors = topicsAdapter.getSelectors<State>((state) => state.theory.topics);
+export const articlesSelectors = articlesAdapter.getSelectors<State>(
+  (state) => state.theory.articles,
+);
