@@ -19,11 +19,19 @@ export interface TopicDTO {
   title: string;
   description: string | null;
   articles: Pick<ArticleDTO, 'title' | 'id'>[];
+  exercises: Pick<ExerciseDTO, 'title' | 'id'>[];
 }
 
 export interface ArticleDTO {
   readonly id: ID;
   title: string;
   content: string;
-  topic: TopicDTO;
+  topic: Pick<TopicDTO, 'title' | 'id'>;
+}
+
+export interface ExerciseDTO {
+  readonly id: ID;
+  title: string;
+  description: string;
+  topic: Pick<TopicDTO, 'title' | 'id'>;
 }
