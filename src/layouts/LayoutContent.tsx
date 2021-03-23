@@ -4,7 +4,7 @@ import { Queries } from 'assets/styles/vars';
 
 export const LayoutContent = styled(Layout.Content)`
   background: white;
-  padding: 50px 24px;
+  padding: 24px;
   margin: 50px;
 
   @media (max-width: ${Queries.tablet}) {

@@ -4,12 +4,11 @@ import { Helmet } from 'react-helmet';
 import { store } from 'store';
 import { Routes } from './routes';
 import 'antd/dist/antd.css';
+import 'assets/styles/index.scss';
 
-const App: React.FC = () => (
+export const App: React.FC = () => (
   <Provider store={store}>
     <Helmet titleTemplate="%s - Learn English" defaultTitle="Learn English" />
     <Routes />
   </Provider>
 );
-
-export default App;

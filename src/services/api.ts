@@ -1,7 +1,7 @@
 import { default as axiosClient } from 'axios';
 import { logout } from 'store/user/actions';
 import { store } from 'store';
-import { UserDTO, TokensDTO, TopicDTO } from './models';
+import { UserDTO, TokensDTO, TopicDTO, ID } from './models';
 
 const { dispatch, getState } = store;
 
@@ -45,3 +45,5 @@ export const getTokens = (authData: UserDTO) =>
 export const fetchCurrentProfile = () => axios.get<UserDTO>('/users/me').then((res) => res.data);
 
 export const fetchTopics = () => axios.get<TopicDTO[]>('/topics/').then((res) => res.data);
+
+export const fetchTopic = (id: ID) => axios.get<TopicDTO>(`/topics/${id}/`).then((res) => res.data);

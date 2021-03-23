@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 export type Date = string;
+export type ID = number;
 
 export interface UserDTO {
   username?: string;
@@ -14,5 +15,7 @@ export interface TokensDTO {
 }
 
 export interface TopicDTO {
+  readonly id: ID;
   title: string;
+  description: string | null;
 }

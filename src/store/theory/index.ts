@@ -10,5 +10,8 @@ export const theorySlice = createSlice({
     setTopics(state, { payload }: PayloadAction<TopicDTO[]>) {
       topicsAdapter.addMany(state.topics, payload);
     },
+    setTopic(state, { payload }: PayloadAction<TopicDTO>) {
+      topicsAdapter.addOne(state.topics, payload);
+    },
   },
 });
