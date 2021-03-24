@@ -4,6 +4,7 @@ import { LaptopOutlined, SwitcherOutlined, UserOutlined } from '@ant-design/icon
 import styled from 'styled-components';
 import { Link, useLocation, navigate } from '@reach/router';
 import { useTheory } from 'hooks/useTheory';
+import { useMount } from '@umijs/hooks';
 
 const { SubMenu } = Menu;
 
@@ -13,16 +14,16 @@ export const SidebarMenu: React.FC = () => {
 
   const topics = selectTopics();
 
-  const onTheorySelect = () => {
+  useMount(() => {
     getTopics();
-  };
+  });
 
   return (
     <MenuWrapper mode="inline" defaultSelectedKeys={['/']} selectedKeys={[location.pathname]}>
       <Menu.Item icon={<UserOutlined />} key="/">
         <Link to="/">Профиль</Link>
       </Menu.Item>
-      <SubMenu key="/theory" icon={<LaptopOutlined />} title="Теория" onTitleClick={onTheorySelect}>
+      <SubMenu key="/theory" icon={<LaptopOutlined />} title="Теория">
         {topics.length ? (
           topics.map((topic) => (
             <Menu.Item
@@ -39,13 +40,20 @@ export const SidebarMenu: React.FC = () => {
         )}
       </SubMenu>
       <SubMenu key="/exercises" icon={<SwitcherOutlined />} title="Упражнения">
-        <Menu.Item key="13">
-          <Spin />
-        </Menu.Item>
-        <Menu.Item key="9">option9</Menu.Item>
-        <Menu.Item key="10">option10</Menu.Item>
-        <Menu.Item key="11">option11</Menu.Item>
-        <Menu.Item key="12">option12</Menu.Item>
+        {topics.length ? (
+          topics.map((topic) => (
+            <Menu.Item
+              key={`/exercises/${topic.id}`}
+              onClick={() => navigate(`/exercises/${topic.id}`)}
+            >
+              {topic.title}
+            </Menu.Item>
+          ))
+        ) : (
+          <Menu.Item>
+            <Spin />
+          </Menu.Item>
+        )}
       </SubMenu>
     </MenuWrapper>
   );

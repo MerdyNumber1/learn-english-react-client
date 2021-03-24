@@ -15,7 +15,7 @@ export const userSlice = createSlice({
       state.auth.tokens = payload;
     },
     clearUserData() {
-      return initialState;
+      return { ...initialState };
     },
   },
 });

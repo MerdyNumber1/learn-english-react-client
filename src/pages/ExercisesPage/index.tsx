@@ -4,12 +4,13 @@ import { useMount } from '@umijs/hooks';
 import { ID } from 'services/models';
 import { SpinnerSplash } from 'components/common/SpinnerSplash';
 import { TopicCard } from 'components/theory/TopicCard';
+import { LinkList } from 'components/common/LinkList';
 
 interface ExercisesPageProps {
   topicId: ID;
 }
 
-export const ArticlesPage: React.VFC<ArticlesPageProps> = ({ topicId }) => {
+export const ArticlesPage: React.VFC<ExercisesPageProps> = ({ topicId }) => {
   const { selectTopic, getTopic } = useTheory();
   const topic = selectTopic(topicId);
 
@@ -19,5 +20,17 @@ export const ArticlesPage: React.VFC<ArticlesPageProps> = ({ topicId }) => {
     }
   });
 
-  return topic ? <TopicCard topic={topic} /> : <SpinnerSplash size="large" />;
+  return topic ? (
+    <div>
+      <TopicCard topic={topic} />
+      <LinkList
+        items={topic.articles.map((article) => ({
+          link: `/articles/${topic.id}/${article.id}`,
+          content: article.title,
+        }))}
+      />
+    </div>
+  ) : (
+    <SpinnerSplash size="large" />
+  );
 };
