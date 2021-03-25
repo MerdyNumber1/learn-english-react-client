@@ -21,7 +21,7 @@ axios.interceptors.response.use(
       dispatch(logout());
     }
     return Promise.reject(error);
-  },
+  }
 );
 
 axios.interceptors.request.use(
@@ -33,7 +33,7 @@ axios.interceptors.request.use(
     }
     return config;
   },
-  (error) => Promise.reject(error),
+  (error) => Promise.reject(error)
 );
 
 export const createUser = (user: UserDTO) =>

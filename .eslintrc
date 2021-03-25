@@ -27,6 +27,17 @@
     }
   },
   "rules": {
+    "function-paren-newline": "off",
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "always-multiline",
+        "exports": "always-multiline",
+        "functions": "never"
+      }
+    ],
     "react-hooks/rules-of-hooks": "off",
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": ["error"],

@@ -6,5 +6,5 @@ export const userInfoSelector = (state: State) => state.user.info;
 
 export const hasUserLoggedSelector = createSelector(
   authDataSelector,
-  ({ tokens }) => !!(tokens.access && tokens.refresh),
+  ({ tokens }) => !!(tokens.access && tokens.refresh)
 );

@@ -1,7 +1,18 @@
 module.exports = {
   printWidth: 100,
   singleQuote: true,
-  trailingComma: 'all',
+  'trailing-comma': [
+    true,
+    {
+      multiline: {
+        objects: 'always',
+        arrays: 'always',
+        functions: 'never',
+        typeLiterals: 'ignore',
+      },
+      esSpecCompliant: true,
+    },
+  ],
   bracketSpacing: true,
   jsxBracketSameLine: false,
   tabWidth: 2,
