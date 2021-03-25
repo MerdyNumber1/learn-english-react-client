@@ -1,11 +1,10 @@
 import React from 'react';
-import { PageHeader } from 'antd';
 import { ID } from 'services/models';
 import { ArticleCard } from 'components/theory/ArticleCard';
 import { SpinnerSplash } from 'components/common/SpinnerSplash';
+import { BackToTopicTitle } from 'components/BackToTopicTitle';
 import { useTheory } from 'hooks/useTheory';
 import { useMount } from '@umijs/hooks';
-import { navigate } from '@reach/router';
 
 interface ArticlePageProps {
   articleId: ID;
@@ -23,10 +22,9 @@ export const ArticlePage: React.VFC<ArticlePageProps> = ({ articleId }) => {
 
   return article ? (
     <div>
-      <PageHeader
-        title={article.topic.title}
-        subTitle="Вернуться обратно к теме"
-        onBack={() => navigate(`/articles/${article.topic.id}`)}
+      <BackToTopicTitle
+        topicTitle={article.topic.title}
+        topicLink={`/articles/${article.topic.id}`}
       />
       <ArticleCard article={article} />
     </div>

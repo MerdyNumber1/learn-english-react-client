@@ -10,7 +10,7 @@ interface ExercisesPageProps {
   topicId: ID;
 }
 
-export const ArticlesPage: React.VFC<ExercisesPageProps> = ({ topicId }) => {
+export const ExercisesPage: React.VFC<ExercisesPageProps> = ({ topicId }) => {
   const { selectTopic, getTopic } = useTheory();
   const topic = selectTopic(topicId);
 
@@ -24,8 +24,8 @@ export const ArticlesPage: React.VFC<ExercisesPageProps> = ({ topicId }) => {
     <div>
       <TopicCard topic={topic} />
       <LinkList
-        items={topic.articles.map((article) => ({
-          link: `/articles/${topic.id}/${article.id}`,
+        items={topic.exercises.map((article) => ({
+          link: `/exercises/${topic.id}/${article.id}`,
           content: article.title,
         }))}
       />
