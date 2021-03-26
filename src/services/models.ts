@@ -2,6 +2,11 @@
 export type Date = string;
 export type ID = number;
 
+export interface EntityListingDTO {
+  readonly id: ID;
+  title: string;
+}
+
 export interface UserDTO {
   username?: string;
   email: string;
@@ -18,20 +23,33 @@ export interface TopicDTO {
   readonly id: ID;
   title: string;
   description: string | null;
-  articles: Pick<ArticleDTO, 'title' | 'id'>[];
-  exercises: Pick<ExerciseDTO, 'title' | 'id'>[];
+  articles: EntityListingDTO[];
+  exercises: EntityListingDTO[];
 }
 
 export interface ArticleDTO {
   readonly id: ID;
   title: string;
   content: string;
-  topic: Pick<TopicDTO, 'title' | 'id'>;
+  topic: EntityListingDTO;
 }
 
 export interface ExerciseDTO {
   readonly id: ID;
   title: string;
   description: string;
-  topic: Pick<TopicDTO, 'title' | 'id'>;
+  topic: EntityListingDTO;
+  options: AnswerOptionDTO[];
+}
+
+export interface AnswerOptionDTO {
+  readonly id: ID;
+  title: string;
+}
+
+export interface ExerciseReportDTO {
+  readonly id: ID;
+  readonly is_correct?: string;
+  exercise: EntityListingDTO;
+  option: EntityListingDTO;
 }

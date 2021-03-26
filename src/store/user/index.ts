@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TokensDTO, UserDTO } from 'services/models';
-import { initialState } from './state';
+import { initialState, getInitialState } from './state';
 
 export const userSlice = createSlice({
   name: 'user',
@@ -15,7 +15,7 @@ export const userSlice = createSlice({
       state.auth.tokens = payload;
     },
     clearUserData() {
-      return { ...initialState };
+      return getInitialState();
     },
   },
 });

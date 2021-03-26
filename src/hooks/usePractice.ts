@@ -1,7 +1,7 @@
 import { State, useDispatch } from 'store';
-import { getExercise } from 'store/practice/actions';
+import { getExercise, sendReport } from 'store/practice/actions';
 import { useSelector } from 'react-redux';
-import { exercisesSelectors } from 'store/practice/selectors';
+import { exercisesSelectors, reportSelectorByExerciseId } from 'store/practice/selectors';
 import { ID, ExerciseDTO } from 'services/models';
 
 export const usePractice = () => {
@@ -13,5 +13,8 @@ export const usePractice = () => {
       useSelector<State, ExerciseDTO | undefined>((state) =>
         exercisesSelectors.selectById(state, id)
       ),
+    sendReport: (optionId: ID, exerciseId: ID) => dispatch(sendReport(optionId, exerciseId)),
+    selectReportByExerciseId: (exerciseId: ID) =>
+      useSelector(reportSelectorByExerciseId(exerciseId)),
   };
 };

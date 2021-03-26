@@ -24,6 +24,7 @@ export const initialState = {
   info: {
     username: null,
     email: null,
+    registrationDate: null,
   },
   auth: {
     tokens: {
@@ -32,3 +33,11 @@ export const initialState = {
     },
   },
 } as UserState;
+
+export const getInitialState = () => ({
+  ...initialState,
+  auth: {
+    ...initialState.auth,
+    tokens: { access: getItem('access_token') || null, refresh: getItem('refresh_token') || null },
+  },
+});
