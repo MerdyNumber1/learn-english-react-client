@@ -40,16 +40,18 @@ export interface ExerciseDTO {
   description: string;
   topic: EntityListingDTO;
   options: AnswerOptionDTO[];
+  report: ExerciseReportDTO | null;
+  readonly correct_option: AnswerOptionDTO | null;
 }
 
 export interface AnswerOptionDTO {
   readonly id: ID;
-  title: string;
+  option: string;
 }
 
 export interface ExerciseReportDTO {
   readonly id: ID;
-  readonly is_correct?: string;
+  readonly is_correct: boolean;
   exercise: EntityListingDTO;
-  option: EntityListingDTO;
+  answer: EntityListingDTO;
 }
