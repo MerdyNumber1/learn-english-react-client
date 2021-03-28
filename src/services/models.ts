@@ -54,4 +54,6 @@ export interface ExerciseReportDTO {
   readonly is_correct: boolean;
   exercise: EntityListingDTO;
   answer: EntityListingDTO;
+  user: UserDTO;
+  correct_option: AnswerOptionDTO;
 }

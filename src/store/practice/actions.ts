@@ -14,5 +14,8 @@ export const getExercise = (id: ID) => (dispatch: Dispatch) =>
     }
   });
 
-export const sendReport = (optionId: ID, exerciseId: ID) => (dispatch: Dispatch) =>
-  postExerciseReport(optionId, exerciseId).then((report) => dispatch(setReport(report)));
+export const sendReport = (optionId: ID, exerciseId: ID) => async (dispatch: Dispatch) => {
+  const report = await postExerciseReport(optionId, exerciseId);
+  const reportDetail = await fetchExerciseReport(report.id);
+  dispatch(setReport(reportDetail));
+};
