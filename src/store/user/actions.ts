@@ -1,5 +1,5 @@
 import { navigate } from '@reach/router';
-import { createUser, getTokens, fetchCurrentProfile } from 'services/api';
+import { createUser, getTokens, fetchCurrentProfile, patchUser } from 'services/api';
 import { Dispatch } from 'store/index';
 import { removeItems, setItems } from 'services/storage';
 import { TokensDTO, UserDTO } from 'services/models';
@@ -28,3 +28,6 @@ export const logout = () => (dispatch: Dispatch) => {
 
 export const getCurrentUser = () => (dispatch: Dispatch) =>
   fetchCurrentProfile().then((data) => dispatch(setUserInfo(data)));
+
+export const updatePartialUser = (fields: Partial<UserDTO>) => (dispatch: Dispatch) =>
+  patchUser(fields).then((data) => dispatch(setUserInfo(data)));

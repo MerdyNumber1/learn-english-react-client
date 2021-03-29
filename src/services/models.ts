@@ -12,6 +12,7 @@ export interface UserDTO {
   email: string;
   password: string;
   readonly registration_date?: Date;
+  readonly correct_reports_count?: number;
 }
 
 export interface TokensDTO {

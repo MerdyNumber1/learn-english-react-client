@@ -13,6 +13,7 @@ export interface UserInfoState {
   username: string | null;
   email: string | null;
   registrationDate: string | null;
+  correctReportsCount: number | null;
 }
 
 export interface UserState {
@@ -25,6 +26,7 @@ export const initialState = {
     username: null,
     email: null,
     registrationDate: null,
+    correctReportsCount: null,
   },
   auth: {
     tokens: {

@@ -10,6 +10,7 @@ export const userSlice = createSlice({
       state.info.email = payload.email;
       state.info.username = payload.username || null;
       state.info.registrationDate = payload.registration_date || null;
+      state.info.correctReportsCount = payload.correct_reports_count ?? null;
     },
     setAuthData(state, { payload }: PayloadAction<TokensDTO>) {
       state.auth.tokens = payload;

@@ -50,6 +50,9 @@ export const createUser = (user: UserDTO) =>
 export const getTokens = (authData: UserDTO) =>
   axios.post<TokensDTO>('/users/token/', authData).then((res) => res.data);
 
+export const patchUser = (fields: Partial<UserDTO>) =>
+  axios.patch<UserDTO>('/users/me/', fields).then((res) => res.data);
+
 export const fetchCurrentProfile = () => axios.get<UserDTO>('/users/me').then((res) => res.data);
 
 export const fetchTopics = () => axios.get<TopicDTO[]>('/topics/').then((res) => res.data);
