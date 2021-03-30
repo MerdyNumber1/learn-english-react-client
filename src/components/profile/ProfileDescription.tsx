@@ -3,7 +3,7 @@ import { Descriptions, Typography, Input, Button, Alert } from 'antd';
 import { useUser } from 'hooks/useUser';
 import styled from 'styled-components';
 
-const { Paragraph } = Typography;
+const { Paragraph, Title } = Typography;
 
 export const ProfileDescription: React.FC = () => {
   const [newPassword, setNewPassword] = useState<string>();
@@ -14,7 +14,8 @@ export const ProfileDescription: React.FC = () => {
 
   return (
     <section>
-      <Descriptions title="Информация">
+      <Title level={2}>Вы вошли как: {userData.username}</Title>
+      <Descriptions title="Информация:">
         <Descriptions.Item label="Имя">
           <Paragraph editable={{ onChange: (str) => updatePartialUser({ username: str }) }}>
             {userData.username || ''}
