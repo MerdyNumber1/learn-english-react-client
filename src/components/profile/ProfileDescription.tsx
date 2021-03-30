@@ -1,12 +1,16 @@
-import React from 'react';
-import { Descriptions, Typography, Input } from 'antd';
+import React, { useState } from 'react';
+import { Descriptions, Typography, Input, Button, Alert } from 'antd';
 import { useUser } from 'hooks/useUser';
 import styled from 'styled-components';
 
 const { Paragraph } = Typography;
 
 export const ProfileDescription: React.FC = () => {
+  const [newPassword, setNewPassword] = useState<string>();
+  const [updatingUserStatus, setUpdatingUserStatus] = useState<string>();
   const { userData, updatePartialUser } = useUser();
+
+  const onChangePassword = () => updatePartialUser({ password: newPassword });
 
   return (
     <section>
@@ -25,18 +29,28 @@ export const ProfileDescription: React.FC = () => {
         <Descriptions.Item label="Правильных ответов">
           {userData.correctReportsCount}
         </Descriptions.Item>
-        <Descriptions.Item label="Правильных ответов">
-          <PasswordInput
-            onChange={(e) => updatePartialUser({ password: e.target.value })}
-            placeholder="Введите новый пароль"
-          />
-        </Descriptions.Item>
       </Descriptions>
+
+      {updatingUserStatus && (
+        <AlertChangedPassword type="success" closable message={updatingUserStatus} />
+      )}
+      <PasswordInput
+        onChange={(e) => setNewPassword(e.target.value)}
+        placeholder="Введите новый пароль"
+      />
+      <Button
+        onClick={() => onChangePassword().then(() => setUpdatingUserStatus('Пароль обновлен'))}
+      >
+        Сменить пароль
+      </Button>
     </section>
   );
 };
 
 const PasswordInput = styled(Input.Password)`
   width: 200px;
-  margin-left: 10px;
+`;
+
+const AlertChangedPassword = styled(Alert)`
+  margin-bottom: 15px;
 `;
