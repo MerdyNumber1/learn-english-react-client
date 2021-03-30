@@ -5,6 +5,10 @@ import { ID } from 'services/models';
 import { SpinnerSplash } from 'components/common/SpinnerSplash';
 import { TopicCard } from 'components/theory/TopicCard';
 import { LinkList } from 'components/common/LinkList';
+import { Typography } from 'antd';
+import styled from 'styled-components';
+
+const { Title } = Typography;
 
 interface ArticlesPageProps {
   topicId: ID;
@@ -23,6 +27,7 @@ export const ArticlesPage: React.VFC<ArticlesPageProps> = ({ topicId }) => {
   return topic ? (
     <div>
       <TopicCard topic={topic} />
+      <ArticlesListTitle level={3}>Статьи по теме:</ArticlesListTitle>
       <LinkList
         items={topic.articles.map((article) => ({
           link: `/articles/${topic.id}/${article.id}`,
@@ -34,3 +39,7 @@ export const ArticlesPage: React.VFC<ArticlesPageProps> = ({ topicId }) => {
     <SpinnerSplash size="large" />
   );
 };
+
+const ArticlesListTitle = styled(Title)`
+  margin: 30px 0;
+`;

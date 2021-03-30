@@ -11,6 +11,10 @@ interface TopicCardProps {
 export const TopicCard: React.VFC<TopicCardProps> = ({ topic }) => (
   <section>
     <Title>{topic.title}</Title>
-    {topic.description && <Text>{topic.description}</Text>}
+    {topic.description && (
+      <Text>
+        <span dangerouslySetInnerHTML={{ __html: topic.description }}></span>
+      </Text>
+    )}
   </section>
 );
