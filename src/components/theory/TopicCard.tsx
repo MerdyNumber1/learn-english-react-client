@@ -2,7 +2,7 @@ import React from 'react';
 import { TopicDTO } from 'services/models';
 import { Typography } from 'antd';
 
-const { Title, Text } = Typography;
+const { Title } = Typography;
 
 interface TopicCardProps {
   topic: TopicDTO;
@@ -11,10 +11,6 @@ interface TopicCardProps {
 export const TopicCard: React.VFC<TopicCardProps> = ({ topic }) => (
   <section>
     <Title>{topic.title}</Title>
-    {topic.description && (
-      <Text>
-        <span dangerouslySetInnerHTML={{ __html: topic.description }}></span>
-      </Text>
-    )}
+    {topic.description && <div dangerouslySetInnerHTML={{ __html: topic.description }} />}
   </section>
 );

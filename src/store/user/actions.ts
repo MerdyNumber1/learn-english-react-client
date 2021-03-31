@@ -1,9 +1,10 @@
 import { navigate } from '@reach/router';
-import { createUser, getTokens, fetchCurrentProfile, patchUser } from 'services/api';
-import { Dispatch } from 'store/index';
-import { removeItems, setItems } from 'services/storage';
+import { createUser, getTokens, fetchCurrentProfile, patchUser, refreshToken } from 'services/api';
+import { Dispatch, store } from 'store';
+import { removeItems, setItems, setItem } from 'services/storage';
 import { TokensDTO, UserDTO } from 'services/models';
 import { userSlice } from './index';
+import { tokensSelector } from './selectors';
 
 const { setAuthData, setUserInfo, clearUserData } = userSlice.actions;
 
@@ -19,6 +20,19 @@ export const login = (authData: UserDTO) => (dispatch: Dispatch) =>
     dispatch(setAuthData(data));
     navigate('/');
   });
+
+export const reenter = () => async (dispatch: Dispatch, getState: typeof store.getState) => {
+  const { refresh } = tokensSelector(getState());
+
+  if (refresh) {
+    const { access } = await refreshToken(refresh);
+    setItem('access_token', access);
+    dispatch(setAuthData({ refresh, access }));
+    return access;
+  }
+
+  throw new Error('refresh doesnt exist');
+};
 
 export const logout = () => (dispatch: Dispatch) => {
   removeItems('access_token', 'refresh_token');

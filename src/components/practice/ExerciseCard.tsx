@@ -31,7 +31,7 @@ export const ExerciseCard: React.VFC<ExerciseCardProps> = ({ exercise }) => {
   return (
     <section>
       <Title>{exercise.title}</Title>
-      <Text>{exercise.description}</Text>
+      <div dangerouslySetInnerHTML={{ __html: exercise.description }} />
       {error && <Alert type="error" message={error} />}
       <Title level={4}>Выберите ответ:</Title>
 

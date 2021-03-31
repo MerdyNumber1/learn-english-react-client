@@ -1,6 +1,7 @@
 import { default as axiosClient } from 'axios';
-import { logout } from 'store/user/actions';
+import { logout, reenter } from 'store/user/actions';
 import { store } from 'store';
+import { tokensSelector } from 'store/user/selectors';
 import {
   UserDTO,
   TokensDTO,
@@ -22,22 +23,38 @@ export const axios = axiosClient.create({
   },
 });
 
-axios.interceptors.response.use(
-  (response) => Promise.resolve(response),
-  (error) => {
-    if (error.response && error.response.status === 401) {
-      dispatch(logout());
+const createAxiosResponseInterceptor = () => {
+  const interceptor = axios.interceptors.response.use(
+    (response) => Promise.resolve(response),
+    async (error) => {
+      if (error.response.status !== 401) {
+        throw new Error(error);
+      }
+
+      axios.interceptors.response.eject(interceptor);
+
+      try {
+        const access = await dispatch(reenter());
+        error.response.config.headers.Authorization = `Bearer ${access}`;
+        return axios(error.response.config);
+      } catch (err) {
+        dispatch(logout());
+        throw new Error(error);
+      } finally {
+        createAxiosResponseInterceptor();
+      }
     }
-    return Promise.reject(error);
-  }
-);
+  );
+};
+
+createAxiosResponseInterceptor();
 
 axios.interceptors.request.use(
   (config) => {
-    const token = getState().user.auth.tokens.access;
+    const { access } = tokensSelector(getState());
 
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+    if (access) {
+      config.headers.Authorization = `Bearer ${access}`;
     }
     return config;
   },
@@ -49,6 +66,11 @@ export const createUser = (user: UserDTO) =>
 
 export const getTokens = (authData: UserDTO) =>
   axios.post<TokensDTO>('/users/token/', authData).then((res) => res.data);
+
+export const refreshToken = (refresh: TokensDTO['refresh']) =>
+  axios
+    .post<Pick<TokensDTO, 'access'>>('/users/token/refresh/', { refresh })
+    .then((res) => res.data);
 
 export const patchUser = (fields: Partial<UserDTO>) =>
   axios.patch<UserDTO>('/users/me/', fields).then((res) => res.data);

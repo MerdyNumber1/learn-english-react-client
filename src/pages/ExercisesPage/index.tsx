@@ -7,6 +7,7 @@ import { TopicCard } from 'components/theory/TopicCard';
 import { LinkList } from 'components/common/LinkList';
 import { Typography } from 'antd';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 
 const { Title } = Typography;
 
@@ -24,19 +25,24 @@ export const ExercisesPage: React.VFC<ExercisesPageProps> = ({ topicId }) => {
     }
   });
 
-  return topic ? (
-    <div>
-      <TopicCard topic={topic} />
-      <ExercisesListTitle level={3}>Задания по теме:</ExercisesListTitle>
-      <LinkList
-        items={topic.exercises.map((article) => ({
-          link: `/exercises/${topic.id}/${article.id}`,
-          content: article.title,
-        }))}
-      />
-    </div>
-  ) : (
-    <SpinnerSplash size="large" />
+  return (
+    <>
+      <Helmet>{topic && <title>{topic.title}</title>}</Helmet>
+      {topic ? (
+        <div>
+          <TopicCard topic={topic} />
+          <ExercisesListTitle level={3}>Задания по теме:</ExercisesListTitle>
+          <LinkList
+            items={topic.exercises.map((article) => ({
+              link: `/exercises/${topic.id}/${article.id}`,
+              content: article.title,
+            }))}
+          />
+        </div>
+      ) : (
+        <SpinnerSplash size="large" />
+      )}
+    </>
   );
 };
 

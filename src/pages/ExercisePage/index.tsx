@@ -4,6 +4,7 @@ import { useMount } from '@umijs/hooks';
 import { BackToTopicTitle } from 'components/BackToTopicTitle';
 import { SpinnerSplash } from 'components/common/SpinnerSplash';
 import { ExerciseCard } from 'components/practice/ExerciseCard';
+import { Helmet } from 'react-helmet';
 
 interface ExercisePageProps {
   exerciseId: number;
@@ -19,15 +20,26 @@ export const ExercisePage: React.VFC<ExercisePageProps> = ({ exerciseId }) => {
     }
   });
 
-  return exercise ? (
-    <div>
-      <BackToTopicTitle
-        topicTitle={exercise.topic.title}
-        topicLink={`/exercises/${exercise.topic.id}`}
-      />
-      <ExerciseCard exercise={exercise} />
-    </div>
-  ) : (
-    <SpinnerSplash size="large" />
+  return (
+    <>
+      <Helmet>
+        {exercise && (
+          <title>
+            {exercise.title}: {exercise.topic.title}
+          </title>
+        )}
+      </Helmet>
+      {exercise ? (
+        <div>
+          <BackToTopicTitle
+            topicTitle={exercise.topic.title}
+            topicLink={`/exercises/${exercise.topic.id}`}
+          />
+          <ExerciseCard exercise={exercise} />
+        </div>
+      ) : (
+        <SpinnerSplash size="large" />
+      )}
+    </>
   );
 };
