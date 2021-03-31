@@ -36,7 +36,7 @@ const createAxiosResponseInterceptor = () => {
       try {
         const access = await dispatch(reenter());
         error.response.config.headers.Authorization = `Bearer ${access}`;
-        return axios(error.response.config);
+        return axios.request(error.response.config);
       } catch (err) {
         dispatch(logout());
         throw new Error(error);
