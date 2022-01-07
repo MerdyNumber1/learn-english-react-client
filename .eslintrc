@@ -27,6 +27,7 @@
     }
   },
   "rules": {
+    "react/no-danger": "off",
     "function-paren-newline": "off",
     "comma-dangle": [
       "error",
