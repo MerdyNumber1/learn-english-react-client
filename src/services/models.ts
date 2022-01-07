@@ -58,3 +58,18 @@ export interface ExerciseReportDTO {
   user: UserDTO;
   correct_option: AnswerOptionDTO;
 }
+
+export enum MessageType {
+  MESSAGE = 'message', // usual message in chat, without reply
+  ARTICLE_REPLY = 'article_reply', // message with article reply
+  EXERCISE_REPLY = 'exercise_reply', // message with exercise reply
+}
+
+export interface Message {
+  readonly id?: number;
+  readonly created_at?: Date;
+  type: MessageType;
+  message: string;
+  article_id?: number;
+  exercise_id?: number;
+}
