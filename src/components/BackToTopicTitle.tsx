@@ -1,7 +1,8 @@
 import React from 'react';
 import { navigate } from '@reach/router';
-import { PageHeader } from 'antd';
+import { PageHeader, Tooltip } from 'antd';
 import styled from 'styled-components';
+import { RollbackOutlined } from '@ant-design/icons';
 
 interface BackToTopicTitleProps {
   topicTitle: string;
@@ -9,13 +10,29 @@ interface BackToTopicTitleProps {
 }
 
 export const BackToTopicTitle: React.VFC<BackToTopicTitleProps> = ({ topicTitle, topicLink }) => (
-  <Header
-    title={topicTitle}
-    subTitle="Вернуться обратно к теме"
-    onBack={() => navigate(topicLink)}
-  />
+  <HeaderWrapper>
+    <Header
+      title={topicTitle}
+      subTitle="Вернуться обратно к теме"
+      onBack={() => navigate(topicLink)}
+    />
+    <Tooltip title="Отправить в обсуждение">
+      <Reply />
+    </Tooltip>
+  </HeaderWrapper>
 );
+
+const HeaderWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
 
 const Header = styled(PageHeader)`
   padding: 0;
+`;
+
+const Reply = styled(RollbackOutlined)`
+  cursor: pointer;
+  font-size: 20px;
 `;

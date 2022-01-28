@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { MessageType } from 'services/models';
 
 interface useWebsocketEvents {
   onOpen: (e: WebSocketEventMap['open']) => void;
@@ -17,5 +18,10 @@ export const useWebsocket = (url: string, events: useWebsocketEvents) => {
     setWs(wsInstance);
   };
 
-  return { init, ws, send: (data: any) => ws?.send(JSON.stringify(data)), close: ws?.close };
+  return {
+    init,
+    ws,
+    send: (data: any) => ws?.send(JSON.stringify({ ...data, type: MessageType.MESSAGE })),
+    close: ws?.close,
+  };
 };

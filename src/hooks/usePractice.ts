@@ -1,11 +1,11 @@
-import { State, useDispatch } from 'store';
+import { State, useAppDispatch } from 'store';
 import { getExercise, sendReport } from 'store/practice/actions';
 import { useSelector } from 'react-redux';
 import { exercisesSelectors, reportSelectorByExerciseId } from 'store/practice/selectors';
 import { ID, ExerciseDTO } from 'services/models';
 
 export const usePractice = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   return {
     getExercise: (id: ID) => dispatch(getExercise(id)),

@@ -10,6 +10,7 @@ import {
 import { UserDTO } from 'services/models';
 import { useUser } from 'hooks/useUser';
 import { FormikConfig } from 'formik';
+import { AxiosError } from 'axios';
 import LoginSchema from './schema';
 
 const { Text } = Typography;
@@ -25,9 +26,9 @@ export const LoginForm: React.FC = () => {
 
   const onSubmit: FormikConfig<UserDTO>['onSubmit'] = (data, { setErrors }) => {
     setIsLoading(true);
-    login({ email: data.email, password: data.password }).catch((err) => {
+    login({ email: data.email, password: data.password }).catch((err: AxiosError) => {
       setIsLoading(false);
-      setErrors(err.response.data);
+      setErrors(err?.response?.data);
     });
   };
 

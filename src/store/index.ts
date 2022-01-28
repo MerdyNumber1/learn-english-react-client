@@ -1,4 +1,4 @@
-import { useDispatch as useActionDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { reducers } from './reducers';
 
@@ -8,6 +8,6 @@ export const store = configureStore({
 });
 
 export type Dispatch = typeof store.dispatch;
-export const useDispatch = () => useActionDispatch<Dispatch>();
+export const useAppDispatch = () => useDispatch<Dispatch>();
 
 export type State = ReturnType<typeof store.getState>;

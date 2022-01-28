@@ -27,6 +27,8 @@
     }
   },
   "rules": {
+    "react-hooks/exhaustive-deps": "off",
+    "consistent-return": "off",
     "react/no-danger": "off",
     "function-paren-newline": "off",
     "comma-dangle": [

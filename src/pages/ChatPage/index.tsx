@@ -16,5 +16,4 @@ const ChatWrapper = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 2px;
-  border: 1px solid #d9d9d9;
 `;

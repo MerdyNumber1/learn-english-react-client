@@ -1,11 +1,11 @@
-import { State, useDispatch } from 'store';
+import { State, useAppDispatch } from 'store';
 import { getTopics, getTopic, getArticle } from 'store/theory/actions';
 import { useSelector } from 'react-redux';
 import { articlesSelectors, topicsSelectors } from 'store/theory/selectors';
 import { ID, TopicDTO, ArticleDTO } from 'services/models';
 
 export const useTheory = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   return {
     getTopics: () => dispatch(getTopics()),

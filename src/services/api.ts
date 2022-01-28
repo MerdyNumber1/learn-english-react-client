@@ -1,7 +1,7 @@
 import { default as axiosClient } from 'axios';
 import { logout, reenter } from 'store/user/actions';
 import { store } from 'store';
-import { tokensSelector } from 'store/user/selectors';
+import { tokensSelector, hasUserLoggedSelector } from 'store/user/selectors';
 import {
   UserDTO,
   TokensDTO,
@@ -10,9 +10,8 @@ import {
   ArticleDTO,
   ExerciseDTO,
   ExerciseReportDTO,
+  Message,
 } from './models';
-
-const { dispatch, getState } = store;
 
 export const axios = axiosClient.create({
   baseURL: process.env.REACT_APP_API_URL,
@@ -27,18 +26,19 @@ const createAxiosResponseInterceptor = () => {
   const interceptor = axios.interceptors.response.use(
     (response) => Promise.resolve(response),
     async (error) => {
-      if (error.response.status !== 401) {
+      const isLogged = hasUserLoggedSelector(store.getState());
+      if (error.response.status !== 401 || !isLogged) {
         throw new Error(error);
       }
 
       axios.interceptors.response.eject(interceptor);
 
       try {
-        const access = await dispatch(reenter());
+        const access = await store.dispatch(reenter());
         error.response.config.headers.Authorization = `Bearer ${access}`;
         return axios.request(error.response.config);
       } catch (err) {
-        dispatch(logout());
+        store.dispatch(logout());
         throw new Error(error);
       } finally {
         createAxiosResponseInterceptor();
@@ -51,7 +51,7 @@ createAxiosResponseInterceptor();
 
 axios.interceptors.request.use(
   (config) => {
-    const { access } = tokensSelector(getState());
+    const { access } = tokensSelector(store.getState());
 
     if (access) {
       config.headers.Authorization = `Bearer ${access}`;
@@ -64,8 +64,7 @@ axios.interceptors.request.use(
 export const createUser = (user: UserDTO) =>
   axios.post<UserDTO>('/users/', user).then((res) => res.data);
 
-export const getTokens = (authData: UserDTO) =>
-  axios.post<TokensDTO>('/users/token/', authData).then((res) => res.data);
+export const getTokens = (authData: UserDTO) => axios.post<TokensDTO>('/users/token/', authData);
 
 export const refreshToken = (refresh: TokensDTO['refresh']) =>
   axios
@@ -97,3 +96,5 @@ export const postExerciseReport = (optionId: ID, exerciseId: ID) =>
 
 export const fetchExerciseReport = (reportId: ID) =>
   axios.get<ExerciseReportDTO>(`/reports/${reportId}/`).then((res) => res.data);
+
+export const fetchMessages = () => axios.get<Message[]>('/messages').then((res) => res.data);

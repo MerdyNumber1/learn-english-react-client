@@ -1,5 +1,3 @@
-import { getItem } from 'services/storage';
-
 export interface UserAuthState {
   tokens: UserTokensState;
 }
@@ -30,8 +28,8 @@ export const initialState = {
   },
   auth: {
     tokens: {
-      access: getItem('access_token') || null,
-      refresh: getItem('refresh_token') || null,
+      access: window.localStorage.getItem('access_token') || null,
+      refresh: window.localStorage.getItem('refresh_token') || null,
     },
   },
 } as UserState;
@@ -40,6 +38,9 @@ export const getInitialState = () => ({
   ...initialState,
   auth: {
     ...initialState.auth,
-    tokens: { access: getItem('access_token') || null, refresh: getItem('refresh_token') || null },
+    tokens: {
+      access: window.localStorage.getItem('access_token') || null,
+      refresh: window.localStorage.getItem('refresh_token') || null,
+    },
   },
 });

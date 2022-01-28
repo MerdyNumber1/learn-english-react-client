@@ -19,5 +19,5 @@ export const useChat = () => {
     onMessage,
   });
 
-  return { ...ws, isReady, messages };
+  return { ...ws, isReady, messages, setMessages };
 };
