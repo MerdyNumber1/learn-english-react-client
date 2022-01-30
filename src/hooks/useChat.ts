@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Message } from 'services/models';
+import { postMessage } from 'services/api';
 import { useWebsocket } from './useWebsocket';
 import { useUser } from './useUser';
 
@@ -19,5 +20,13 @@ export const useChat = () => {
     onMessage,
   });
 
-  return { ...ws, isReady, messages, setMessages };
+  return {
+    ...ws,
+    isReady,
+    messages,
+    setMessages,
+    postMessage: (data: Message) => {
+      postMessage(data).then((msg) => setMessages((prev) => [...prev, msg]));
+    },
+  };
 };

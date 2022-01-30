@@ -27,6 +27,7 @@ export const ArticlePage: React.VFC<ArticlePageProps> = ({ articleId }) => {
       {article ? (
         <div>
           <BackToTopicTitle
+            articleId={articleId}
             topicTitle={article.topic.title}
             topicLink={`/articles/${article.topic.id}`}
           />

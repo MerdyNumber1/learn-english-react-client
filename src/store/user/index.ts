@@ -8,6 +8,7 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setUserInfo(state, { payload }: PayloadAction<UserDTO>) {
+      state.info.id = payload.id || null;
       state.info.email = payload.email;
       state.info.username = payload.username || null;
       state.info.registrationDate = payload.registration_date || null;

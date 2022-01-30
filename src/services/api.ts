@@ -97,4 +97,7 @@ export const postExerciseReport = (optionId: ID, exerciseId: ID) =>
 export const fetchExerciseReport = (reportId: ID) =>
   axios.get<ExerciseReportDTO>(`/reports/${reportId}/`).then((res) => res.data);
 
-export const fetchMessages = () => axios.get<Message[]>('/messages').then((res) => res.data);
+export const fetchMessages = () => axios.get<Message[]>('/messages/').then((res) => res.data);
+
+export const postMessage = (data: Message) =>
+  axios.post<Message>('/messages/', data).then((res) => res.data);

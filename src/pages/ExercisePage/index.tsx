@@ -32,6 +32,7 @@ export const ExercisePage: React.VFC<ExercisePageProps> = ({ exerciseId }) => {
       {exercise ? (
         <div>
           <BackToTopicTitle
+            exerciseId={exerciseId}
             topicTitle={exercise.topic.title}
             topicLink={`/exercises/${exercise.topic.id}`}
           />

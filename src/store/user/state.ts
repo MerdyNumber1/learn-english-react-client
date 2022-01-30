@@ -8,6 +8,7 @@ export interface UserTokensState {
 }
 
 export interface UserInfoState {
+  id: number | null;
   username: string | null;
   email: string | null;
   registrationDate: string | null;
@@ -21,6 +22,7 @@ export interface UserState {
 
 export const initialState = {
   info: {
+    id: null,
     username: null,
     email: null,
     registrationDate: null,

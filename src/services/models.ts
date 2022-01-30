@@ -8,6 +8,7 @@ export interface EntityListingDTO {
 }
 
 export interface UserDTO {
+  id?: ID;
   username?: string;
   email: string;
   password: string;
@@ -70,6 +71,7 @@ export interface Message {
   readonly created_at?: Date;
   type: MessageType;
   message: string;
-  article_id?: number;
-  exercise_id?: number;
+  user?: number;
+  article?: number;
+  exercise?: number;
 }

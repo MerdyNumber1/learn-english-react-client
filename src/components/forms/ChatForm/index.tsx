@@ -11,7 +11,10 @@ export const ChatForm: React.VFC<ChatFormProps> = ({ onSubmit: onSubmitCallback 
   <Formik
     initialValues={{ message: '' }}
     validate={(values) => (!values.message ? { message: '' } : {})}
-    onSubmit={onSubmitCallback}
+    onSubmit={(values, actions) => {
+      onSubmitCallback(values);
+      actions.resetForm();
+    }}
   >
     {({ values, handleChange, handleBlur, handleSubmit }) => (
       <ChatFormWrapper onSubmit={handleSubmit}>

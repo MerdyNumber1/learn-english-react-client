@@ -11,7 +11,8 @@ export const ChatPage: React.VFC = () => (
 const ChatWrapper = styled.div`
   min-height: 80%;
   height: 100%;
-  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;

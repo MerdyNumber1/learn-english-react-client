@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { ChatForm } from 'components/forms/ChatForm';
 import { Message } from 'components/chat/Message';
 import styled from 'styled-components';
@@ -7,6 +7,7 @@ import { SpinnerSplash } from 'components/common/SpinnerSplash';
 import { fetchMessages } from 'services/api';
 
 export const Chat: React.VFC = () => {
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
   const { init, send, close, messages, isReady, setMessages } = useChat();
 
   useEffect(() => {
@@ -17,15 +18,24 @@ export const Chat: React.VFC = () => {
     return close;
   }, []);
 
+  useEffect(() => {
+    messagesContainerRef.current?.scrollTo(
+      0,
+      messagesContainerRef.current.scrollHeight - messagesContainerRef.current.clientHeight
+    );
+  }, [messages]);
+
   return (
     <ChatContainer>
       {isReady ? (
         <>
-          <Messages>
-            {messages.map((message) => (
-              <Message key={message.id} message={message} />
-            ))}
-          </Messages>
+          <ScrollMessagesContainer ref={messagesContainerRef}>
+            <Messages>
+              {messages.map((message) => (
+                <Message key={message.id} message={message} />
+              ))}
+            </Messages>
+          </ScrollMessagesContainer>
           <ChatForm onSubmit={send} />
         </>
       ) : (
@@ -43,10 +53,15 @@ const ChatContainer = styled.div`
   justify-content: space-between;
 `;
 
+const ScrollMessagesContainer = styled.div`
+  max-height: 715px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+`;
+
 const Messages = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-end;
-  margin-bottom: 20px;
 `;
