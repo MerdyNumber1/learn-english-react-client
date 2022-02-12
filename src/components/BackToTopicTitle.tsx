@@ -30,11 +30,7 @@ export const BackToTopicTitle: React.VFC<BackToTopicTitleProps> = ({
           onCancel={() => setIsModalVisible(false)}
         />
       )}
-      <Header
-        title={topicTitle}
-        subTitle="Вернуться обратно к теме"
-        onBack={() => navigate(topicLink)}
-      />
+      <Header title={topicTitle} onBack={() => navigate(topicLink)} />
       <Tooltip title="Отправить в обсуждение">
         <Reply onClick={() => setIsModalVisible(true)} />
       </Tooltip>
@@ -46,6 +42,10 @@ const HeaderWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-width: 600px) {
+    flex-wrap: wrap;
+  }
 `;
 
 const Header = styled(PageHeader)`

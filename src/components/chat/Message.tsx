@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import dayjs from 'dayjs';
 import { useUser } from 'hooks/useUser';
 import { RepliedArticle } from 'components/theory/RepliedArticle';
+import { Typography } from 'antd';
 import { RepliedExercise } from 'components/practice/RepliedExercise';
 
 interface MessageProps {
@@ -13,8 +14,15 @@ interface MessageProps {
 export const Message: React.VFC<MessageProps> = ({ message }) => {
   const { userData } = useUser();
 
+  const isSelfMessage = userData.id === message.user!.id;
+
   return (
-    <MessageWrapper style={{ alignSelf: userData.id === message.user ? 'flex-end' : 'flex-start' }}>
+    <MessageWrapper style={{ alignSelf: isSelfMessage ? 'flex-end' : 'flex-start' }}>
+      {!isSelfMessage && (
+        <Typography.Text type="secondary">
+          {message.user!.username}:<br />
+        </Typography.Text>
+      )}
       {message.type === 'exercise_reply' ? (
         <RepliedExercise exerciseId={message.exercise!} />
       ) : (
@@ -27,6 +35,8 @@ export const Message: React.VFC<MessageProps> = ({ message }) => {
 };
 
 const MessageWrapper = styled.div`
+  word-break: break-word;
+  max-width: 90%;
   padding: 5px 15px 2px 10px;
   border: 1px solid #d9d9d9;
   border-radius: 3px;

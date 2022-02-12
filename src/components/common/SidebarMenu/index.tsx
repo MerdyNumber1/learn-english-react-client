@@ -8,7 +8,11 @@ import { useMount } from '@umijs/hooks';
 
 const { SubMenu } = Menu;
 
-export const SidebarMenu: React.FC = () => {
+interface SidebarMenuProps {
+  onMenuItemClick?: () => void;
+}
+
+export const SidebarMenu: React.FC<SidebarMenuProps> = ({ onMenuItemClick }) => {
   const location = useLocation();
   const { selectTopics, getTopics } = useTheory();
 
@@ -20,10 +24,10 @@ export const SidebarMenu: React.FC = () => {
 
   return (
     <MenuWrapper mode="inline" defaultSelectedKeys={['/']} selectedKeys={[location.pathname]}>
-      <Menu.Item icon={<UserOutlined />} key="/">
+      <Menu.Item onClick={onMenuItemClick} icon={<UserOutlined />} key="/">
         <Link to="/">Профиль</Link>
       </Menu.Item>
-      <Menu.Item key="/chat" icon={<CommentOutlined />}>
+      <Menu.Item onClick={onMenuItemClick} key="/chat" icon={<CommentOutlined />}>
         <Link to="/chat">Обсуждение</Link>
       </Menu.Item>
       <SubMenu key="/theory" icon={<LaptopOutlined />} title="Теория">
@@ -31,7 +35,12 @@ export const SidebarMenu: React.FC = () => {
           topics.map((topic) => (
             <Menu.Item
               key={`/articles/${topic.id}`}
-              onClick={() => navigate(`/articles/${topic.id}`)}
+              onClick={() => {
+                if (onMenuItemClick) {
+                  onMenuItemClick();
+                }
+                navigate(`/articles/${topic.id}`);
+              }}
             >
               {topic.title}
             </Menu.Item>
@@ -47,7 +56,12 @@ export const SidebarMenu: React.FC = () => {
           topics.map((topic) => (
             <Menu.Item
               key={`/exercises/${topic.id}`}
-              onClick={() => navigate(`/exercises/${topic.id}`)}
+              onClick={() => {
+                if (onMenuItemClick) {
+                  onMenuItemClick();
+                }
+                navigate(`/exercises/${topic.id}`);
+              }}
             >
               {topic.title}
             </Menu.Item>
@@ -65,4 +79,10 @@ export const SidebarMenu: React.FC = () => {
 const MenuWrapper = styled(Menu)`
   height: 100%;
   border-right: 0;
+
+  @media (max-width: 800px) {
+    width: 99vw;
+    background: white;
+    height: calc(100vh - 64px);
+  }
 `;

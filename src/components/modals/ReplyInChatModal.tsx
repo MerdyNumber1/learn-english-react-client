@@ -26,8 +26,8 @@ export const ReplyInChatModal: React.VFC<ReplyInChatModalProps> = ({
     <Formik
       initialValues={{ message: '' }}
       validate={(values) => (!values.message ? { message: '' } : {})}
-      onSubmit={(values) => {
-        postMessage({
+      onSubmit={async (values) => {
+        await postMessage({
           ...values,
           type: articleId ? MessageType.ARTICLE_REPLY : MessageType.EXERCISE_REPLY,
           article: Number(articleId || exerciseId),

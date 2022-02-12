@@ -71,7 +71,7 @@ export interface Message {
   readonly created_at?: Date;
   type: MessageType;
   message: string;
-  user?: number;
+  user?: UserDTO;
   article?: number;
   exercise?: number;
 }

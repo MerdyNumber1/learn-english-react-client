@@ -90,9 +90,17 @@ const GlobalMapImageWrapper = styled.div`
   max-width: 350px;
   float: left;
   margin: 0 30px 30px 0;
+
+  @media (max-width: 600px) {
+    float: unset;
+  }
 `;
 
 const SelfStudyImageWrapper = styled.div`
   max-width: 300px;
   float: right;
+
+  @media (max-width: 600px) {
+    float: unset;
+  }
 `;

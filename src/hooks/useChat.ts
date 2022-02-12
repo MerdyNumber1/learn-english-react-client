@@ -25,8 +25,7 @@ export const useChat = () => {
     isReady,
     messages,
     setMessages,
-    postMessage: (data: Message) => {
-      postMessage(data).then((msg) => setMessages((prev) => [...prev, msg]));
-    },
+    postMessage: (data: Message) =>
+      postMessage(data).then((msg) => setMessages((prev) => [...prev, msg])),
   };
 };

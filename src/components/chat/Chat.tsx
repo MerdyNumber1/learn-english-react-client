@@ -54,9 +54,13 @@ const ChatContainer = styled.div`
 `;
 
 const ScrollMessagesContainer = styled.div`
-  max-height: 715px;
   overflow-y: auto;
   margin-bottom: 20px;
+  height: calc(100vh - 276px);
+
+  @media (max-width: 900px) {
+    height: calc(100vh - 176px);
+  }
 `;
 
 const Messages = styled.div`
