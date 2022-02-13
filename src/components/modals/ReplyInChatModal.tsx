@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 import { RepliedArticle } from 'components/theory/RepliedArticle';
 import { RepliedExercise } from 'components/practice/RepliedExercise';
 import { useChat } from 'hooks/useChat';
-import { MessageType } from 'services/models';
+import { MessageType, Message } from 'services/models';
 import styled from 'styled-components';
 
 interface ReplyInChatModalProps {
@@ -27,11 +27,19 @@ export const ReplyInChatModal: React.VFC<ReplyInChatModalProps> = ({
       initialValues={{ message: '' }}
       validate={(values) => (!values.message ? { message: '' } : {})}
       onSubmit={async (values) => {
-        await postMessage({
+        const payload = {
           ...values,
-          type: articleId ? MessageType.ARTICLE_REPLY : MessageType.EXERCISE_REPLY,
-          article: Number(articleId || exerciseId),
-        });
+        } as Message;
+
+        if (articleId) {
+          payload.type = MessageType.ARTICLE_REPLY;
+          payload.article = +articleId;
+        } else if (exerciseId) {
+          payload.type = MessageType.EXERCISE_REPLY;
+          payload.exercise = +exerciseId;
+        }
+
+        await postMessage(payload);
         onOk();
       }}
     >
